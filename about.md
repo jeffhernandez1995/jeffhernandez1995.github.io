@@ -1,5 +1,5 @@
 ---
-title: "Acerca de"
+title: "About"
 ---
 
 ### About Me
