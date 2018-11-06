@@ -8,7 +8,9 @@ layout: blank
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
     </header>
     {% if page.use_math %}
-      {% include mathjax_support.html %}
+      <script type="text/javascript" async
+       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
     {% endif %}
 {{ content }}
     {% if site.comments.isso and page.comments %}
