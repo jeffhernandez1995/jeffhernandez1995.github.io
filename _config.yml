@@ -8,6 +8,9 @@ paginate: 5
 permalink: pretty
 excerpt_separator: "\n\n\n" # two blank lines
 
+markdown: kramdown
+highlighter: rouge
+
 style:
   minimalist: false
   dark: false
@@ -16,6 +19,7 @@ navigation:
   - index.html
   - archive.html
   - about.md
+
 
 comments:
   disqus: "disqus-contrast"
