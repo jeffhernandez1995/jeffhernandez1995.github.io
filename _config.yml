@@ -29,6 +29,7 @@ links: # see http://fontawesome.io/icons/#brand for all possible icons
   - twitter: "https://twitter.com/Jeffers54430062"
   - github: "https://github.com/jeffhernandez1995/"
   - envelope: "mailto:jefehern@espol.edu.ec"
+  - linkedin: "https://www.linkedin.com/in/jefferson-hernandez-546a0b163/"
 
 defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
 sass: {style: expanded}
