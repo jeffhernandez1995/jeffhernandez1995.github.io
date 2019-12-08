@@ -4,17 +4,20 @@ title: "About"
 
 ### About Me
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Mi nombre es Jefferson Hernandez (Graduado de Ingenieria Industrial en la [ESPOL](http://www.espol.edu.ec/)) y estoy interesado en el *deep learning*. Tengo alrededor de tres años de experiencia en investigación en *machine learning* y áreas relacionadas. Ocasionalmente escribo en mi blog sobre cosas nuevas que aprendo y espero escribir mucho más en el futuro.
 
-### My life
+**Cosas en las que he trabajado**
+* *Deep Learning* (PyTorch, Caffe2, Tensorflow)
+* *Computer Vision*
+* *Machine Learning*
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
- - Dictumst
- - Vestibulum
- - Rhoncus
- - Pellentesque
+**Mas informacion acerca de mi**
+* Perfil de [Github.](https://github.com/jeffhernandez1995)
+* Perfil de [LinkedIn.](https://www.linkedin.com/in/jefferson-hernandez-546a0b163/)
+* Mi [twitter](https://twitter.com/Jeffers54430062).
  
-Maecenas accumsan lacus vel facilisis volutpat est velit. Arcu bibendum at varius vel. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. 
-
-Ultrices dui sapien eget mi proin sed. Dignissim sodales ut eu sem.
+**Publiaciones**
+* Hernandez, J., & Abad, A. G. (2018, May). Learning from multivariate discrete sequential data using a restricted Boltzmann machine model. In 2018 IEEE 1st Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-6). IEEE. ([link](https://ieeexplore.ieee.org/abstract/document/8484854), [arxiv](https://arxiv.org/abs/1804.10839))
+* Hernandez, J., & Abad, A. G. (2018, May). Spatial and Temporal Feature Extraction Using a Restricted Boltzmann Machine Model. In IEEE Colombian Conference on Applications in Computational Intelligence (pp. 3-13). Springer, Cham. ([link](https://link.springer.com/chapter/10.1007%2F978-3-030-03023-0_1))
+* Cobos, R., Hernandez, J., & Abad, A. G. (2019, June). Retail Traffic-Flow Analysis Using a Fast Multi-object Detection and Tracking System. In IEEE Colombian Conference on Applications in Computational Intelligence (pp. 29-39). Springer, Cham. ([link](https://ieeexplore.ieee.org/document/8781972))
+* Cobos R., Hernandez J., Abad A.G. (2019) Retail Traffic-Flow Analysis Using a Fast Multi-object Detection and Tracking System. In: Orjuela-Cañón A., Figueroa-García J., Arias-Londoño J. (eds) Applications of Computational Intelligence. ColCACI 2019. Communications in Computer and Information Science, vol 1096. Springer, Cham ([link](https://link.springer.com/chapter/10.1007%2F978-3-030-36211-9_3))
