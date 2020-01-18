@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
+from models import EmbeddingNet, SiameseNet
 # mostly based on https://github.com/edenton/svg/blob/master/data/moving_mnist.py
 
 
@@ -27,10 +28,10 @@ class MovingMNIST(Dataset):
         else:
             self.X = np.load('data/X_test.npy')
             self.Y = np.load('data/Y_test.npy')
+        self.N = self.X.shape[0]
         inds = [i for i in range(self.Y.shape[0]) if self.Y[i] in self.digits]
         self.X = self.X[inds]
         self.Y = self.Y[inds]
-        self.N = self.X.shape[0]
 
     def __len__(self):
         return self.N
@@ -42,7 +43,7 @@ class MovingMNIST(Dataset):
                       self.channels), dtype=np.float32)
         bbox = np.zeros((self.seq_len, self.num_digits, 5))
         for n in range(self.num_digits):
-            idx = np.random.randint(self.N)
+            idx = np.random.randint(self.X.shape[0])
             digit = self.X[idx]
             sx = np.random.randint(self.image_size - self.digit_size)
             sy = np.random.randint(self.image_size - self.digit_size)
@@ -139,3 +140,57 @@ class SiameseMNIST(Dataset):
 
     def __len__(self):
         return self.X.shape[0]
+
+
+class AssociationMNIST(Dataset):
+    """
+    Train: For each sample creates randomly a positive or a negative pair
+    Test: Creates fixed pairs for testing
+    """
+
+    def __init__(self, train, digits=np.arange(10)):
+        self.train = train
+        self.digits = digits
+        self.size = digits.shape[0]
+
+        embedding_net = EmbeddingNet()
+        self.model = SiameseNet(embedding_net)
+        self.device = "cpu"
+        self.model.load_state_dict(torch.load('models/SiameseNet_SiameseNet_11_loss=0.001986655.pth'))
+        if self.device:
+            self.model.to(self.device)
+        self.model.eval()
+        if train:
+            self.X = np.load('data/X_train.npy')
+            self.Y = np.load('data/Y_train.npy')
+        else:
+            self.X = np.load('data/X_test.npy')
+            self.Y = np.load('data/Y_test.npy')
+        self.N = self.X.shape[0]
+        inds = [i for i in range(self.Y.shape[0]) if self.Y[i] in self.digits]
+        self.X = self.X[inds]
+        self.Y = self.Y[inds]
+
+    def __len__(self):
+        return self.N
+
+    def __getitem__(self, index):
+        x = np.zeros((self.size, 2, 1, self.X.shape[1], self.X.shape[1]))
+        y = np.zeros((self.size, self.size))
+        for i in range(self.size):
+            idx = np.random.randint(self.X.shape[0])
+            x[i, 0, 0, :, :] = self.X[idx]
+        permidx = np.random.permutation(self.size)
+        for i, index in enumerate(permidx):
+            x[index, 1, 0, :, :] = x[i, 0, 0, :, :]
+            y[i, index] = 1
+        inp =  torch.as_tensor(x).float()
+        inp = inp.view(self.size * 2, 1, self.X.shape[1], self.X.shape[1])
+        with torch.no_grad():
+            if self.device:
+                inp = inp.to(self.device)
+            inp = self.model.get_embedding(inp)
+        inp = inp.view(self.size, 2, -1).to('cpu')
+        target =  torch.as_tensor(y).float()
+        return inp, target
+
