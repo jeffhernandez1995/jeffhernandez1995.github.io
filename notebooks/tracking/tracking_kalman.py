@@ -2,9 +2,8 @@ from collections import OrderedDict
 
 import numpy as np
 import pandas as pd
-from datasets import MovingMNIST
 from sort import Sort
-
+from copy import deepcopy
 import motmetrics as mm
 
 
@@ -17,24 +16,30 @@ def compare_dataframes(gts, ts):
             names.append(k)
     return accs, names
 
-num_digits = 5
-test_digits = np.array([1, 3, 5, 7, 9])
 seq_len = 100
-test_dset = MovingMNIST(True, seq_len=seq_len, num_digits=num_digits, digits=test_digits)
+num_digits = 5
+vids = np.load('data/icons8_testing_fast_videos.npy')[:seq_len]
+bboxs = np.load('data/icons8_testing_fast_trajectories.npy')[:seq_len]
+bboxs[:, :, :, 3] = vids.shape[2] - bboxs[:, :, :, 3]
+bboxs[:, :, :, 1] = vids.shape[2] - bboxs[:, :, :, 1]
+bboxs = bboxs.swapaxes(1, 2)
+ids = np.repeat(np.arange(num_digits), seq_len * seq_len).reshape(num_digits, seq_len, seq_len, 1)
+ids = ids.swapaxes(0, 2)
+bboxs = np.concatenate((bboxs, ids), axis=3)
 
 gt = []
 dt = []
 names = ['FrameId', 'X', 'Y', 'Width', 'Height', 'Id', 'Confidence', 'ClassId', 'Visibility']
 for i in range(100): # len(test_dset)
-    seq, bbox = test_dset[i]
-    bbox = bbox.numpy()
+    seq = vids[i]
+    bbox = bboxs[i]
     tracker = Sort()
     trks_ = np.zeros((0, 9))
     for t in range(bbox.shape[0]):
         dets = bbox[t].copy()
-        if np.random.uniform() < 0.1:
-            idel = np.random.randint(dets.shape[0])
-            dets = np.delete(dets, (idel), axis=0)
+        # if np.random.uniform() < 0.1:
+        #     idel = np.random.randint(dets.shape[0])
+        #     dets = np.delete(dets, (idel), axis=0)
         dets[:, -1] = 1 # remove ground truth id replace with condifence
         trks = tracker.update(dets)
         trks[:, 2] = trks[:, 2] - trks[:, 0]
@@ -64,6 +69,7 @@ for i in range(100): # len(test_dset)
 
 gt = OrderedDict([(i, df) for i, df in enumerate(gt)])
 dt = OrderedDict([(i, df) for i, df in enumerate(dt)])
+# dt = deepcopy(gt)
 mh = mm.metrics.create()
 accs, names = compare_dataframes(gt, dt)
 summary = mh.compute_many(accs, names=names, metrics=mm.metrics.motchallenge_metrics, generate_overall=True)

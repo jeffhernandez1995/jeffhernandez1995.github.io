@@ -20,10 +20,17 @@ def compare_dataframes(gts, ts):
             names.append(k)
     return accs, names
 
-num_digits = 5
-test_digits = np.array([1, 3, 5, 7, 9])
+
 seq_len = 100
-test_dset = MovingMNIST(True, seq_len=seq_len, num_digits=num_digits, digits=test_digits)
+num_digits = 5
+vids = np.load('data/icons8_testing_fast_videos.npy')[:seq_len]
+bboxs = np.load('data/icons8_testing_fast_trajectories.npy')[:seq_len]
+bboxs[:, :, :, 3] = vids.shape[2] - bboxs[:, :, :, 3]
+bboxs[:, :, :, 1] = vids.shape[2] - bboxs[:, :, :, 1]
+bboxs = bboxs.swapaxes(1, 2)
+ids = np.repeat(np.arange(num_digits), seq_len * seq_len).reshape(num_digits, seq_len, seq_len, 1)
+ids = ids.swapaxes(0, 2)
+bboxs = np.concatenate((bboxs, ids), axis=3)
 
 gt = []
 dt = []

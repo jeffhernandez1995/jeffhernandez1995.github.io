@@ -11,9 +11,8 @@ from ignite.engine import (Engine, Events, create_supervised_evaluator,
                            create_supervised_trainer)
 from ignite.handlers import EarlyStopping, ModelCheckpoint, TerminateOnNan
 from ignite.metrics import Loss, RunningAverage
-from torch.utils.data import DataLoader
+from torch.utils.data import TensorDataset, DataLoader
 
-from datasets import AssociationMNIST
 from losses import AssociationLoss
 from models import InteractionNet
 
@@ -26,10 +25,28 @@ def encode_onehot(labels):
                              dtype=np.int32)
     return labels_onehot
 
+
 digits = np.array([0, 2, 4, 6, 8])
-digit_size = 28
-train_dataset = AssociationMNIST(True, digits=digits)
-test_dataset = AssociationMNIST(False, digits=digits)
+
+X_train = np.load('datasets/X_train.npy')
+y_train = np.load('datasets/y_train.npy')
+X_test = np.load('datasets/X_test.npy')
+y_test = np.load('datasets/y_test.npy')
+
+# plt.imshow(X_test[0, 1, 0, :, :], cmap='gray')
+# plt.show()
+# plt.imshow(X_test[0, 0, 1, :, :], cmap='gray')
+# plt.show()
+# print(y_test[0])
+# assert 2 == 1
+
+X_train = torch.from_numpy(X_train).float()
+y_train = torch.from_numpy(y_train).float()
+X_test = torch.from_numpy(X_test).float()
+y_test = torch.from_numpy(y_test).float()
+
+train_dataset = TensorDataset(X_train, y_train)
+test_dataset = TensorDataset(X_test, y_test)
 
 cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if cuda else "cpu")
@@ -50,11 +67,11 @@ if device:
     rel_rec = rel_rec.to(device)
     rel_send = rel_send.to(device)
 
-model = InteractionNet(256, 256*2, digits.shape[0], n_iter, 0.5)
+model = InteractionNet(28*28, 256*2, digits.shape[0], n_iter, 0.25)
 weights = [1/3]*3
 criterion = AssociationLoss(weights)
-lr = 1e-3
-optimizer = optim.Adam(model.parameters(), lr=lr)
+lr = 1e-4
+optimizer = optim.RMSprop(model.parameters(), lr=lr)
 
 
 def evaluate_function(engine, batch):
@@ -68,6 +85,7 @@ def evaluate_function(engine, batch):
             target = target.to(device)
         y_pred = model(inp, rel_rec, rel_send)
     return y_pred, target
+
 
 def process_function(engine, batch):
     if device:
@@ -84,6 +102,7 @@ def process_function(engine, batch):
     optimizer.step()
     return loss.item()
 
+
 trainer = Engine(process_function)
 evaluator = Engine(evaluate_function)
 training_history = {'loss':[]}
@@ -96,12 +115,15 @@ pbar = ProgressBar(persist=True,
                    bar_format="")
 pbar.attach(trainer, ['loss'])
 
+
 def score_function(engine):
     val_loss = engine.state.metrics['AssociationLoss']
     return -val_loss
 
+
 handler = EarlyStopping(patience=10, score_function=score_function, trainer=trainer)
 evaluator.add_event_handler(Events.COMPLETED, handler)
+
 
 @trainer.on(Events.EPOCH_COMPLETED)
 def log_training_results(engine):
@@ -109,13 +131,17 @@ def log_training_results(engine):
     training_history['loss'].append(loss)
     print("Training Results - Epoch: {}  Avg loss: {:.2f}".format(trainer.state.epoch, loss))
 
+
 def log_validation_results(engine):
     evaluator.run(test_loader)
     metrics = evaluator.state.metrics
     loss = metrics['AssociationLoss']
     validation_history['loss'].append(loss)
     print("Validation Results - Epoch: {} Avg loss: {:.2f}".format(trainer.state.epoch, loss))
+
+
 trainer.add_event_handler(Events.EPOCH_COMPLETED, log_validation_results)
+
 
 def val_score(engine):
     evaluator.run(test_loader)

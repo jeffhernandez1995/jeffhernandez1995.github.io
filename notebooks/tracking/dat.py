@@ -1,8 +1,9 @@
 import numpy as np
 import torch
 import torch.nn as nn
-from models import InteractionNet, EmbeddingNet, SiameseNet
+from models import InteractionNet
 from lapsolver import solve_dense
+
 
 def encode_onehot(labels):
     classes = set(labels)
@@ -25,7 +26,7 @@ class Tracker(object):
         self.hits = 0
         self.hit_streak = 0
         self.age = 0
-    
+
     def update(self, state, bbox):
         """
         Updates the state vector with observed bbox.
@@ -38,16 +39,17 @@ class Tracker(object):
 
     def predict(self):
         self.age += 1
-        if(self.time_since_update>0):
+        if(self.time_since_update > 0):
             self.hit_streak = 0
         self.time_since_update += 1
         return self.state
-    
+
     def get_state(self):
         """
         Returns the current bounding box estimate.
         """
         return self.bbox
+
 
 class DAT(object):
     def __init__(self, max_age=10000, min_hits=0):
@@ -67,16 +69,11 @@ class DAT(object):
         if self.device:
             self.rel_rec = self.rel_rec.to(self.device)
             self.rel_send = self.rel_send.to(self.device)
-        self.internet = InteractionNet(256, 256*2, 5, n_iter, 0.5)
-        embedding_net = EmbeddingNet()
-        self.siamesenet = SiameseNet(embedding_net)
-        if self.device:
-            self.siamesenet.to(self.device)
-            self.internet.to(self.device)
+        self.internet = InteractionNet(28 * 28, 256*2, 5, n_iter, 0.5)
+        self.internet.to(self.device)
         self.softmax = nn.Softmax(dim=1)
-        self.siamesenet.load_state_dict(torch.load('models/SiameseNet_SiameseNet_11_loss=0.001986655.pth'))
         self.internet.load_state_dict(torch.load('models/InteractionNet__29_loss=0.01199802.pth'))
-    
+
     def update(self, images, bboxs):
         self.frame_count += 1
         if self.device:
@@ -118,8 +115,6 @@ class DAT(object):
             #remove dead tracklet
             if(trk.time_since_update > self.max_age):
                 self.trackers.pop(i)
-        if(len(ret)>0):
+        if(len(ret) > 0):
             return np.concatenate(ret)
-        return np.empty((0,5))
-
-
+        return np.empty((0, 5))

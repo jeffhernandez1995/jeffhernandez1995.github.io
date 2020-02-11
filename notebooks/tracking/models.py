@@ -2,16 +2,19 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+# taken from https://github.com/ethanfetaya/NRI/blob/master/modules.py
 
-class EmbeddingNet(nn.Module):
+
+class CNN(nn.Module):
     def __init__(self):
-        super(EmbeddingNet, self).__init__()
-        self.convnet = nn.Sequential(nn.Conv2d(1, 32, 5), nn.BatchNorm2d(32), nn.ReLU(),
+        super(CNN, self).__init__()
+        self.convnet = nn.Sequential(nn.Conv2d(10, 32, 5), nn.BatchNorm2d(32), nn.ReLU(),
                                      nn.MaxPool2d(2, stride=2),
                                      nn.Conv2d(32, 64, 5), nn.BatchNorm2d(64), nn.ReLU(),
-                                     nn.MaxPool2d(2, stride=2))
+                                     nn.Conv2d(64, 10, 1), nn.BatchNorm2d(10), nn.ReLU(),
+                                     )
 
-        self.fc = nn.Sequential(nn.Linear(64 * 4 * 4, 256),
+        self.fc = nn.Sequential(nn.Linear(8 * 8, 256),
                                 nn.ReLU(),
                                 nn.Linear(256, 256),
                                 nn.ReLU())
@@ -19,32 +22,12 @@ class EmbeddingNet(nn.Module):
 
     def forward(self, x):
         output = self.convnet(x)
-        output = output.view(output.size()[0], -1)
+        output = output.view(output.size(0), output.size(1), -1)
         output = self.drop_out(output)
         output = self.fc(output)
         return output
 
 
-class SiameseNet(nn.Module):
-    def __init__(self, embedding_net):
-        super(SiameseNet, self).__init__()
-        self.embedding_net = embedding_net
-        self.fc = nn.Sequential(nn.Linear(256, 2),
-                                nn.ReLU())
-
-    def forward(self, x1, x2):
-        output1 = self.fc(self.embedding_net(x1))
-        output2 = self.fc(self.embedding_net(x2))
-        return output1, output2
-
-    def get_embedding(self, x):
-        return self.embedding_net(x)
-    
-    def get_final(self, x):
-        output = self.fc(self.embedding_net(x))
-        return output
-
-# taken from https://github.com/ethanfetaya/NRI/blob/master/modules.py
 class MLP(nn.Module):
     """Two-layer fully-connected ELU net with batch norm."""
 
@@ -116,12 +99,11 @@ class InteractionNet(nn.Module):
         return edges
 
     def forward(self, inputs, rel_rec, rel_send):
-        # Input shape: [B, num_objs, 2, feat]
+        # Input shape: [B, num_objs, 2, 28, 28]
         shape = list(inputs.size())
 
         x = inputs.view(shape[0], shape[1] * shape[2], -1)
-        # New shape: [B, num_objs * 2, feat]
-
+        # New shape: [B, num_objs * 2, 28 * 28]
         x = self.mlp1(x)  # 2-layer ELU net per node
         x = x.view(shape[0], shape[1], shape[2], -1)
         x1 = x[:, :, 0, :].view(shape[0], shape[1], -1)
