@@ -37,9 +37,9 @@ for i in range(100): # len(test_dset)
     trks_ = np.zeros((0, 9))
     for t in range(bbox.shape[0]):
         dets = bbox[t].copy()
-        # if np.random.uniform() < 0.1:
-        #     idel = np.random.randint(dets.shape[0])
-        #     dets = np.delete(dets, (idel), axis=0)
+        if np.random.uniform() < 0.1:
+            idel = np.random.randint(dets.shape[0])
+            dets = np.delete(dets, (idel), axis=0)
         dets[:, -1] = 1 # remove ground truth id replace with condifence
         trks = tracker.update(dets)
         trks[:, 2] = trks[:, 2] - trks[:, 0]
@@ -58,8 +58,8 @@ for i in range(100): # len(test_dset)
     bbox_ = bbox.reshape((-1, 5))
     bbox_ = np.concatenate((framesid.reshape(framesid.shape[0],1), bbox_), axis=1)
     bbox_ = np.concatenate((bbox_, np.ones((framesid.shape[0],3))), axis=1)
-    bbox_[:, 3] = 28
-    bbox_[:, 4] = 28
+    bbox_[:, 3] = bbox_[:, 3] - bbox_[:, 1]
+    bbox_[:, 4] = bbox_[:, 4] - bbox_[:, 2]
     gt_df = pd.DataFrame(bbox_,
                          columns=names)
     gt_df.index = pd.MultiIndex.from_arrays(gt_df[['FrameId', 'Id']].values.T, names=['FrameId', 'Id'])

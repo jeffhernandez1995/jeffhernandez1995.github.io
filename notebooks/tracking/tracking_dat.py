@@ -1,10 +1,10 @@
 from collections import OrderedDict
 
 import numpy as np
+import cv2
 import pandas as pd
 import torch
 import torch.nn as nn
-from datasets import MovingMNIST
 from dat import DAT
 import matplotlib.pyplot as plt
 import motmetrics as mm
@@ -35,28 +35,33 @@ bboxs = np.concatenate((bboxs, ids), axis=3)
 gt = []
 dt = []
 names = ['FrameId', 'X', 'Y', 'Width', 'Height', 'Id', 'Confidence', 'ClassId', 'Visibility']
-for i in range(2): # len(test_dset)
-    seq, bbox = test_dset[i]
-    temp_bbox = deepcopy(bbox.numpy())
+for i in range(100):  # len(test_dset)
+    seq = vids[i]
+    bbox = bboxs[i]
+    temp_bbox = deepcopy(bbox)
     tracker = DAT()
     trks_ = np.zeros((0, 9))
-    for t in range(bbox.size(0)):
-        dets = bbox[t].clone().detach()
-        if np.random.uniform() < 0.1 and t > 0:
-            idx = torch.ones(dets.size(0)).long()
-            idel = np.random.randint(dets.size(0))
-            idx[idel] = 0
-            dets = dets[idx]
-        dets[:, -1] = 1 # remove ground truth id replace with condifence
+    for t in range(bbox.shape[0]):
+        dets = bbox[t].copy()
+        # if np.random.uniform() < 0.1 and t > 0:
+        #     idx = torch.ones(dets.shape[0]).long()
+        #     idel = np.random.randint(dets.shape[0])
+        #     idx[idel] = 0
+        #     dets = dets[idx]
+        dets[:, -1] = 1  # remove ground truth id replace with condifence
         images = []
         for det in dets:
-            pts = det.to('cpu').detach().numpy().astype(int)
-            # plt.imshow(seq[t, pts[1]:pts[3], pts[0]:pts[2], 0], cmap='gray')
-            # plt.show()
-            # assert 2 == 1
-            images.append(seq[t, pts[1]:pts[3], pts[0]:pts[2], 0].unsqueeze(0))
+            pts = det.astype(int)
+            y1 = min(127, max(0, pts[1]))
+            y2 = min(127, max(0, pts[3]))
+            x1 = min(127, max(0, pts[0]))
+            x2 = min(127, max(0, pts[2]))
+            img = seq[t, y1:y2, x1:x2]
+            img = cv2.resize(img, (28, 28))
+            img = torch.from_numpy(img / 255.).float()
+            images.append(img.unsqueeze(0))
         images = torch.cat(images, dim=0)
-        images = images.unsqueeze(1)
+        dets = torch.from_numpy(dets).float()
         trks = tracker.update(images, dets)
         trks[:, 2] = trks[:, 2] - trks[:, 0]
         trks[:, 3] = trks[:, 3] - trks[:, 1]
@@ -73,10 +78,10 @@ for i in range(2): # len(test_dset)
     # ground truth
     framesid = np.repeat(np.arange(1, seq_len+1), num_digits)
     bbox_ = temp_bbox.reshape((-1, 5))
-    bbox_ = np.concatenate((framesid.reshape(framesid.shape[0],1), bbox_), axis=1)
-    bbox_ = np.concatenate((bbox_, np.ones((framesid.shape[0],3))), axis=1)
-    bbox_[:, 3] = 28
-    bbox_[:, 4] = 28
+    bbox_ = np.concatenate((framesid.reshape(framesid.shape[0], 1), bbox_), axis=1)
+    bbox_ = np.concatenate((bbox_, np.ones((framesid.shape[0], 3))), axis=1)
+    bbox_[:, 3] = bbox_[:, 3] - bbox_[:, 1]
+    bbox_[:, 4] = bbox_[:, 4] - bbox_[:, 2]
     gt_df = pd.DataFrame(bbox_,
                          columns=names)
     gt_df.index = pd.MultiIndex.from_arrays(gt_df[['FrameId', 'Id']].values.T, names=['FrameId', 'Id'])
@@ -84,7 +89,6 @@ for i in range(2): # len(test_dset)
     del gt_df['Id']
     # print(gt_df.head(10))
     gt.append(gt_df)
-    assert 2 == 1
 
 gt = OrderedDict([(i, df) for i, df in enumerate(gt)])
 dt = OrderedDict([(i, df) for i, df in enumerate(dt)])

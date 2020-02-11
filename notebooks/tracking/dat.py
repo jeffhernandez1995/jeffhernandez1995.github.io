@@ -1,4 +1,5 @@
 import numpy as np
+import cv2
 import torch
 import torch.nn as nn
 from models import InteractionNet
@@ -72,39 +73,39 @@ class DAT(object):
         self.internet = InteractionNet(28 * 28, 256*2, 5, n_iter, 0.5)
         self.internet.to(self.device)
         self.softmax = nn.Softmax(dim=1)
-        self.internet.load_state_dict(torch.load('models/InteractionNet__29_loss=0.01199802.pth'))
+        self.internet.load_state_dict(torch.load('models/InteractionNet__11_loss=0.2297398.pth', map_location='cpu'))
 
     def update(self, images, bboxs):
         self.frame_count += 1
         if self.device:
             images = images.to(self.device)
             bboxs = bboxs.to(self.device)
-        with torch.no_grad():
-            features = self.siamesenet.get_embedding(images)
         if len(self.trackers) == 0:
-            for (feat, bbox) in zip(features, bboxs):
-                trk = Tracker(feat, bbox)
+            for (img, bbox) in zip(images, bboxs):
+                trk = Tracker(img, bbox)
                 self.trackers.append(trk)
             assert len(self.trackers) == 5
         else:
-            inp = torch.zeros((5, 2, 256), device=self.device)
-            inp[:features.size(0), 0, :] = features
+            inp = torch.zeros((5, 2, 28, 28), device=self.device)
+            inp[:images.size(0), 0, :, :] = images
             temp = []
             for trk in self.trackers:
                 state = trk.predict()
-                temp.append(state.view(1, -1))
+                temp.append(state.view(1, 28, 28))
             temp = torch.cat(temp, dim=0)
             assert temp.size(0) == 5
-            inp[:temp.size(0), 1, :] = temp
+            inp[:temp.size(0), 1, :, :] = temp
             with torch.no_grad():
                 matrix = self.internet(inp.unsqueeze(0), self.rel_rec, self.rel_send)
                 matrix = self.softmax(matrix)
             matrix = matrix[0].to('cpu').detach().numpy()
+            # print(np.round(matrix, 3))
+            # assert 2 == 1
             rids, cids = solve_dense(-matrix)
             matched_indices = np.array([rids, cids]).T
-            matched_indices = matched_indices[:features.size(0)]
+            matched_indices = matched_indices[:images.size(0)]
             for (d, t) in matched_indices:
-                self.trackers[t].update(features[d], bboxs[d])
+                self.trackers[t].update(images[d], bboxs[d])
         ret = []
         i = len(self.trackers)
         for trk in reversed(self.trackers):
