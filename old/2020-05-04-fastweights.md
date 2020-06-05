@@ -28,9 +28,77 @@ The fact that these problems have been identified by people from within the comm
 ## Case Study (Using Fast Weights to Attend to the Recent Past [\[1\]](#ba2016using))
 
 ### What are _fast weights_?
-Fast Weights are extend standard vanilla recurrent neural network architecture with an associative memory. In the context of this paper, the authors identify two types of memory in traditional recurrent neural networks, hidden activity vectors $h_t$, that are updated every time-step, and serve as short-term memory and slow weights (traditional weights matrices) that are updated at the end of a batch and that have more memory capacity. The authors motivate a third type of memory called fast weights  that has much higher storage capacity than the neural activities but much faster dynamics than the standard slow weights [\[1\]](#ba2016using). (We note as the author did that these concepts were developed much early in [\[14\]](#hinton1987using) and [\[15\]](#schmidhuber1992learning))
+Fast Weights are extend standard vanilla recurrent neural network architecture with an associative memory. In the context of this paper, the authors identify two types of memory in traditional recurrent neural networks, hidden activity vectors $\mathbf{h}_t$, that are updated every time-step, and serve as short-term memory and slow weights (traditional weights matrices) that are updated at the end of a batch and that have more memory capacity. The authors motivate a third type of memory called fast weights  that has much higher storage capacity than the neural activities but much faster dynamics than the standard slow weights [\[1\]](#ba2016using). (We note as the author did that these concepts were developed much early in [\[14\]](#hinton1987using) and [\[15\]](#schmidhuber1992learning))
 
-The author also give biological motivations for the concept of fast weights, namely that human do not store exact patterns of neural activity as memory, instead memory retrieval involves reconstructing neural patterns through a set of associative weights which can map to many other memories as well. 
+The author also give biological motivations for the concept of fast weights, namely that human do not store exact patterns of neural activity as memory, instead memory retrieval involves reconstructing neural patterns through a set of associative weights which can map to many other memories as well.
+
+| ![Fast weights](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/notebooks/fast_weights/fast_weights_diagram.svg) | 
+|:--:| 
+| **Figure 1**:  The fast associative memory model. Extracted from [\[1\]](#ba2016using).|
+
+Figure 1 shows a diagram of how fast weights affects hidden activity vector. After hidden activity $h_t$ is computed a brief iterative settling process (of size $S$) is started, during this process a fast weight matrix $\mathbf{A}$ is updated using a form of Hebbian short-term synaptic plasticity (outer product)
+
+\begin{equation}
+    \begin{aligned}
+        \mathbf{A}_t = \lambda \mathbf{A}_{t-1} + \eta \mathbf{h}_t \mathbf{h}_t^\intercal,
+    \end{aligned}
+    \tag{1}\label{1}
+\end{equation}
+
+where $\lambda$ and $\eta$ are called decay rate and fast learning
+rate respectively. $\mathbf{A}_t$ (assumed to be zero at the start of the sequence) maintains a dynamically changing short-term memory of the recent history of hidden activities in the network.
+
+The next hidden activity is computed unrolling an _inner loop_ of size $S$ that progressively changes the hidden state (red path in Figure 1) using the input $x_t$ and the previous hidden vector. At each iteration of the inner loop, the fast weight matrix is exactly equivalent to attention mechanism between past hidden vectors and the current hidden vector, weighted by a decay factor [\[1\]](#ba2016using). The final equation for the model is
+
+\begin{equation}
+    \begin{aligned}
+        \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[\mathbf{W}_h \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t} + (\eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} f(\mathbf{W}_h \mathbf{h}_{t} +  \mathbf{W}_x \mathbf{x}_{t})\right]\right)
+    \end{aligned}
+    \tag{2}\label{2}
+\end{equation}
+
+where $\mathcal{LN} \[.\]$ refers to layer normalization (LN).
+
+### Main claim of the fast weights paper
+
+Using four experiments the authors try to justify the advantages of fast weights over traditional recurrent architectures. These experiments are associative retrieval, MNIST classification using visual glimpses, Facial expression classification using visual glimpses and reinforcement learning. Result of these experiments seem to suggest that the incorporated fast weight matrix is the sole responsible for the observed superior performance. However, there are to factor of variation not accounted for in the paper by Ba et. al. [\[1\]](#ba2016using). I am not the first person to identity these factors in fact researcher Emin Orhan is the first to identify these problems in [\[5\]](#orhan2017note) (His blog is great, you should definitely check it out). These factors are:
+1.  As proposed in equation $\eqref{2}$ the model has more depth than standard recurrent architectures. In [\[5\]](#orhan2017note) Orhan noted that as proposed this architecture is not biologically plausible and that there are ways to incorporate the fast weight matrix without increasing the effective depth. This is in fact how the original fast weights were proposed in [\[14\]](#hinton1987using).
+2. Layer normalization has been shown to improve the performance of vanilla recurrent networks and no classical RNN with layer normalization  or fast weight without are tested in the paper, this implies that some of the improvement is due to LN.
+3. Ba et. al. [\[1\]](#ba2016using) hypothesize that fast weights allows RNN's to use their recurrent units more effectively, allowing to reduce the hidden vector size without harming performance. To show this the authors compare with an LSTM, but the comparison should be carried out using standards RNN to see if the performance gains are not due to factors (1) and (2) or better initialization schemes, or the use of the optimizer.
+
+### The role of Design of experiments (DoE)
+
+Quoting the work of [\[13\]](#boquet2019decovac):
+
+>We control almost completely the environment where the experiments are run and thus the data-generating process, we can define a specific **design** to reason about statistical reproducibility while comparing the results of different runs of different algorithms. 
+>
+
+This design is the result of having formulated three hypotheses about different factor that could explain the superior performance seen in [\[1\]](#ba2016using) rather than the fast weight matrix, We turn to Design of experiments (DoE) for a framework that will allows to test these hypotheses. More specifically we will perform a $2^k r$ factorial designs with replications where $k$ is the number of factor and $r$ the number of replications. In our simple case we will assume that our observations are i.i.d, we could estimate the effects of each experiment with the linear regression model with a binary explanatory variable
+
+\begin{equation}
+    \begin{aligned}
+        \mathbf{y} = \mathbf{X}^\intercal \mathbf{q} + \mathbf{q_0} + \epsilon 
+    \end{aligned}
+    \tag{3}\label{3}
+\end{equation}
+
+where $\mathbf{y}$ is vector of responses, $\mathbf{X}$ is a binary matrix that encodes the factors and their iterations (linear, quadratic, cubic), $\mathbf{q}$ and $\mathbf{q_0}$ are called fixed effects and $\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ is random noise. We the must perform experiments for all factor combinations (and interactions), namely $2^k$.
+
+For our case study these factors are:
+1. **DEPTH**: a binary variable that represent where we use $\eqref{2}$ which increases the overall depth of the network or the following:
+\begin{equation}
+    \begin{aligned}
+        \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[ \left(\mathbf{W}_h  + \eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} \mathbf{h}_{\tau} \mathbf{h}_{\tau}^\intercal \right) \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t}\right]\right)
+    \end{aligned}
+    \tag{4}\label{4}
+\end{equation}
+which doesn’t increase the effective depth and would be more biologically plausible.
+2. **LN**: a binary variable for Layer normalization
+3. **HS**: a binary variable that encodes the hidden size of the network (64, 128)
+For control we perform two more experiment dubbed **CTRL** with no fast weights and no LN, only varying the hidden size.
+
+
+
 ## _References_
 
 <a name="ba2016using"></a> [\[1\]](#ba2016using) Ba, J., Hinton, G. E., Mnih, V., Leibo, J. Z., & Ionescu, C. (2016). **Using fast weights to attend to the recent past**. In Advances in Neural Information Processing Systems (pp. 4331-4339).
@@ -59,8 +127,8 @@ The author also give biological motivations for the concept of fast weights, nam
 
 <a name="boquet2019decovac"></a> [\[13\]](#boquet2019decovac) Boquet, T., Delisle, L., Kochetkov, D., Schucher, N., Atighehchian, P., Oreshkin, B., & Cornebise, J. (2019). **DECoVaC: Design of Experiments with Controlled Variability Components**. arXiv preprint arXiv:1909.09859.
 
-<a name="hinton1987using"></a> [\[14\]](#hinton1987using) Hinton, G. E., & Plaut, D. C. (1987, July). Using fast weights to deblur old memories. In Proceedings of the ninth annual conference of the Cognitive Science Society (pp. 177-186).
+<a name="hinton1987using"></a> [\[14\]](#hinton1987using) Hinton, G. E., & Plaut, D. C. (1987, July). **Using fast weights to deblur old memories**. In Proceedings of the ninth annual conference of the Cognitive Science Society (pp. 177-186).
 
-<a name="schmidhuber1992learning"></a> [\[15\]](#schmidhuber1992learning) Schmidhuber, J. (1992). Learning to control fast-weight memories: An alternative to dynamic recurrent networks. Neural Computation, 4(1), 131-139.
+<a name="schmidhuber1992learning"></a> [\[15\]](#schmidhuber1992learning) Schmidhuber, J. (1992). **Learning to control fast-weight memories: An alternative to dynamic recurrent networks**. Neural Computation, 4(1), 131-139.
 
 {% include disqus.html %}
