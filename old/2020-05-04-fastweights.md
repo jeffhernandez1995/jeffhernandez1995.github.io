@@ -27,8 +27,10 @@ The fact that these problems have been identified by people from within the comm
 
 ## Case Study (Using Fast Weights to Attend to the Recent Past [\[1\]](#ba2016using))
 
+### What are _fast weights_?
+Fast Weights are extend standard vanilla recurrent neural network architecture with an associative memory. In the context of this paper, the authors identify two types of memory in traditional recurrent neural networks, hidden activity vectors $h_t$, that are updated every time-step, and serve as short-term memory and slow weights (traditional weights matrices) that are updated at the end of a batch and that have more memory capacity. The authors motivate a third type of memory called fast weights  that has much higher storage capacity than the neural activities but much faster dynamics than the standard slow weights [\[1\]](#ba2016using). (We note as the author did that these concepts were developed much early in [\[14\]](#hinton1987using) and [\[15\]](#schmidhuber1992learning))
 
-
+The author also give biological motivations for the concept of fast weights, namely that human do not store exact patterns of neural activity as memory, instead memory retrieval involves reconstructing neural patterns through a set of associative weights which can map to many other memories as well. 
 ## _References_
 
 <a name="ba2016using"></a> [\[1\]](#ba2016using) Ba, J., Hinton, G. E., Mnih, V., Leibo, J. Z., & Ionescu, C. (2016). **Using fast weights to attend to the recent past**. In Advances in Neural Information Processing Systems (pp. 4331-4339).
@@ -55,6 +57,10 @@ The fact that these problems have been identified by people from within the comm
 
 <a name="chen2019open"></a> [\[12\]](#chen2019open) Chen, X., Dallmeier-Tiessen, S., Dasler, R., Feger, S., Fokianos, P., Gonzalez, J. B., ... & Rodriguez, D. R. (2019). **Open is not enough**. Nature Physics, 15(2), 113-119.
 
-<a n3me="boquet2019decovac"></a> [\[13\]](#boquet2019decovac) Boquet, T., Delisle, L., Kochetkov, D., Schucher, N., Atighehchian, P., Oreshkin, B., & Cornebise, J. (2019). **DECoVaC: Design of Experiments with Controlled Variability Components**. arXiv preprint arXiv:1909.09859.
+<a name="boquet2019decovac"></a> [\[13\]](#boquet2019decovac) Boquet, T., Delisle, L., Kochetkov, D., Schucher, N., Atighehchian, P., Oreshkin, B., & Cornebise, J. (2019). **DECoVaC: Design of Experiments with Controlled Variability Components**. arXiv preprint arXiv:1909.09859.
+
+<a name="hinton1987using"></a> [\[14\]](#hinton1987using) Hinton, G. E., & Plaut, D. C. (1987, July). Using fast weights to deblur old memories. In Proceedings of the ninth annual conference of the Cognitive Science Society (pp. 177-186).
+
+<a name="schmidhuber1992learning"></a> [\[15\]](#schmidhuber1992learning) Schmidhuber, J. (1992). Learning to control fast-weight memories: An alternative to dynamic recurrent networks. Neural Computation, 4(1), 131-139.
 
 {% include disqus.html %}
