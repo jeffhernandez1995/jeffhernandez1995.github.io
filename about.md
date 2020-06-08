@@ -14,7 +14,7 @@ Mi nombre es Jefferson Hernandez (Graduado de Ingenieria Industrial en la [ESPOL
 **Mas informacion acerca de mi**
 * Perfil de [Github.](https://github.com/jeffhernandez1995)
 * Perfil de [LinkedIn.](https://www.linkedin.com/in/jefferson-hernandez-546a0b163/)
-* Mi [twitter](https://twitter.com/Jeffers54430062).
+* Mi [twitter](https://twitter.com/jefehern).
  
 **Publiaciones**
 * Hernandez, J., & Abad, A. G. (2018, May). Learning from multivariate discrete sequential data using a restricted Boltzmann machine model. In 2018 IEEE 1st Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-6). IEEE. ([link](https://ieeexplore.ieee.org/abstract/document/8484854), [arxiv](https://arxiv.org/abs/1804.10839))

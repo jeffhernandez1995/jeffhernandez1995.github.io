@@ -8,6 +8,7 @@ use_math: true
 
 In this post, we will study the applicability of design of experiments (DoE) in machine learning (ML) experiments, to do so we will use a machine learning paper as a case study. I assume that the reader is familiar with RNN's. All the code necessary to reproduce these experiments can be found on [here](https://github.com/jeffhernandez1995/fastweights).
 
+
 ## Motivation
 Machine learning (ML) is kind of a special science field, while sometimes unnecessary mathematical and theoretical and many times rightfully so, the majority of machine learning progress is driven by experiments, either by proposing new architectures, new optimizers, or new paradigms of training. As a mainly experimental field, it is of extreme importance to carry out rigorous experiments to support the claims that cannot be proven mathematically and to make sure that results cannot be explained by alternative hypotheses other than our own.
 
