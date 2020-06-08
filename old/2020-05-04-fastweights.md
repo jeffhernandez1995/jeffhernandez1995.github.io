@@ -95,7 +95,21 @@ For our case study these factors are:
 which doesn’t increase the effective depth and would be more biologically plausible.
 2. **LN**: a binary variable for Layer normalization
 3. **HS**: a binary variable that encodes the hidden size of the network (64, 128)
+
 For control we perform two more experiment dubbed **CTRL** with no fast weights and no LN, only varying the hidden size.
+
+The task that we choose to perform our experiments is associative retrieval. This task present various key-value pairs in a sequence. At the end of the sequence, one of the keys is presented and the model must predict the value that was temporarily associated with the key. Like Ba et. al. [\[1\]](#ba2016using) we used strings that contained characters from English alphabet as keys, together with the digits 0 to 9 as values.
+
+| Input string | Target |
+|:------------:|:------:|
+|  c9k8j3f1??c |    9   |
+|  j0a5s5z2??a |    5   |
+
+We followed the same experimental protocol as [\[1\]](#ba2016using) and generated 100000 training examples and 10000 validation examples. Figure 2 shows the results on the validation set of all models created after all factor combinations.
+
+{:refdef: style="text-align: center;"}
+{% include image.html url="https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/performances.svg" description="<b>Figure 2</b>: Cross entropy and accuracy of all models created after all factor combinations." %}
+{: refdef}
 
 
 
