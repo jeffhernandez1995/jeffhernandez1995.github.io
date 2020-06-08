@@ -28,7 +28,7 @@ The fact that these problems have been identified by people from within the comm
 ## Case Study: Using Fast Weights to Attend to the Recent Past [\[1\]](#ba2016using)
 
 ### What are _fast weights_?
-Fast Weights extend standard vanilla recurrent neural network architectures with an associative memory. In the context of this paper, the authors identify two types of memory in traditional recurrent neural networks, hidden activity vectors $\mathbf{h}_t$, that are updated every time-step, and serve as short-term memory and slow weights (traditional weights matrices) that are updated at the end of a batch and that have more memory capacity. The authors motivate a third type of memory called fast weights  that has much higher storage capacity than the neural activities but much faster dynamics than the standard slow weights [\[1\]](#ba2016using). (We note, as the author did, that these concepts were developed much early in [\[14\]](#hinton1987using) and [\[15\]](#schmidhuber1992learning))
+Fast Weights extend standard vanilla recurrent neural network architectures with an associative memory. In the context of this paper, the authors identify two types of memory in traditional recurrent neural networks, hidden activity vectors $$\mathbf{h}_t$$, that are updated every time-step, and serve as short-term memory and slow weights (traditional weights matrices) that are updated at the end of a batch and that have more memory capacity. The authors motivate a third type of memory called fast weights  that has much higher storage capacity than the neural activities but much faster dynamics than the standard slow weights [\[1\]](#ba2016using). (We note, as the author did, that these concepts were developed much early in [\[14\]](#hinton1987using) and [\[15\]](#schmidhuber1992learning))
 
 The author also give biological motivations for the concept of fast weights, namely that human do not store exact patterns of neural activity as memory, instead memory retrieval involves reconstructing neural patterns through a set of associative weights which can map to many other memories as well.
 
@@ -36,33 +36,33 @@ The author also give biological motivations for the concept of fast weights, nam
 |:--:| 
 | **Figure 1**:  The fast associative memory model. Extracted from [\[1\]](#ba2016using).|
 
-Figure 1 shows a diagram of how fast weights affects hidden activity vector. After hidden activity $\mathbf{h}_t$ is computed a brief iterative settling process (of size $S$) is started, during this process a fast weight matrix $\mathbf{A}$ is updated using a form of Hebbian short-term synaptic plasticity (outer product)
+Figure 1 shows a diagram of how fast weights affects hidden activity vector. After hidden activity $$\mathbf{h}_t$$ is computed a brief iterative settling process (of size $$S$$) is started, during this process a fast weight matrix $$\mathbf{A}$$ is updated using a form of Hebbian short-term synaptic plasticity (outer product)
 
-\begin{equation}
+$$
     \begin{aligned}
         \mathbf{A}_t = \lambda \mathbf{A}_{t-1} + \eta \mathbf{h}_t \mathbf{h}_t^\intercal,
     \end{aligned}
     \tag{1}\label{1}
-\end{equation}
+$$
 
-where $\lambda$ and $\eta$ are called decay rate and fast learning
-rate respectively. $\mathbf{A}_t$ (assumed to be zero at the start of the sequence) maintains a dynamically changing short-term memory of the recent history of hidden activities in the network.
+where $$\lambda$$ and $$\eta$$ are called decay rate and fast learning
+rate respectively. $$\mathbf{A}_t$$ (assumed to be zero at the start of the sequence) maintains a dynamically changing short-term memory of the recent history of hidden activities in the network.
 
-The next hidden activity is computed unrolling an _inner loop_ of size $S$ that progressively changes the hidden state (red path in Figure 1) using the input $x_t$ and the previous hidden vector. At each iteration of the inner loop, the fast weight matrix is exactly equivalent to attention mechanism between past hidden vectors and the current hidden vector, weighted by a decay factor [\[1\]](#ba2016using). The final equation for the model is
+The next hidden activity is computed unrolling an _inner loop_ of size $$S$$ that progressively changes the hidden state (red path in Figure 1) using the input $$x_t$$ and the previous hidden vector. At each iteration of the inner loop, the fast weight matrix is exactly equivalent to attention mechanism between past hidden vectors and the current hidden vector, weighted by a decay factor [\[1\]](#ba2016using). The final equation for the model is
 
-\begin{equation}
+$$
     \begin{aligned}
         \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[\mathbf{W}_h \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t} + (\eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} f(\mathbf{W}_h \mathbf{h}_{t} +  \mathbf{W}_x \mathbf{x}_{t})\right]\right)
     \end{aligned}
     \tag{2}\label{2}
-\end{equation}
+$$
 
-where $\mathcal{LN} \[.\]$ refers to layer normalization (LN) and the unrolling is run for $S=1$ steps.
+where $$\mathcal{LN} \[.\]$$ refers to layer normalization (LN) and the unrolling is run for $$S=1$$ steps.
 
 ### Main claim of the fast weights paper
 
 Using four experiments the authors try to justify the advantages of fast weights over traditional recurrent architectures. These experiments are associative retrieval, MNIST classification using visual glimpses, Facial expression recognition using visual glimpses and reinforcement learning. Results of these experiments seem to suggest that the incorporated fast weight matrix is the sole responsible for the observed superior performance. However, there are two factors of variation not accounted for in the paper by Ba et. al. [\[1\]](#ba2016using). I am not the first person to identity these factors in fact researcher Emin Orhan is the first to identify these problems in [\[5\]](#orhan2017note) (His blog is great, you should definitely check it out). These factors are:
-1.  As proposed in equation $\eqref{2}$ the model has more depth than standard recurrent architectures. In [\[5\]](#orhan2017note) Orhan noted that as proposed this architecture is not biologically plausible and that there are ways to incorporate the fast weight matrix without increasing the effective depth. This is in fact how the original fast weights were proposed in [\[14\]](#hinton1987using).
+1.  As proposed in equation $$\eqref{2}$$ the model has more depth than standard recurrent architectures. In [\[5\]](#orhan2017note) Orhan noted that as proposed this architecture is not biologically plausible and that there are ways to incorporate the fast weight matrix without increasing the effective depth. This is in fact how the original fast weights were proposed in [\[14\]](#hinton1987using).
 2. Layer normalization has been shown to improve the performance of vanilla recurrent networks and no classical RNN with layer normalization  or fast weight RNN without are tested in the paper, this implies that some of the improvement is due to LN.
 3. Ba et. al. [\[1\]](#ba2016using) hypothesize that fast weights allows RNN's to use their recurrent units more effectively, allowing to reduce the hidden vector size without harming performance. To show this the authors compare with an LSTM, but the comparison should be carried out using standards RNN to see if the performance gains are not due to factors (1) and (2) or better initialization schemes, or the use of the optimizer.
 
@@ -73,25 +73,26 @@ Quoting the work of [\[13\]](#boquet2019decovac):
 >We control almost completely the environment where the experiments are run and thus the data-generating process, we can define a specific **design** to reason about statistical reproducibility while comparing the results of different runs of different algorithms. 
 >
 
-For our purposes, this design is the result of having formulated three hypotheses about different factor that could explain the superior performance seen in [\[1\]](#ba2016using) rather than the fast weight matrix. We turn to Design of experiments (DoE) for a framework that will allow us to test these hypotheses. More specifically we will perform a $2^k r$ factorial designs with replications where $k$ is the number of factors and $r$ the number of replications. In our simple case we will assume that our observations are i.i.d, this turns the problem of estimating the effects of each factor into a linear regression model with a binary explanatory variable
+For our purposes, this design is the result of having formulated three hypotheses about different factor that could explain the superior performance seen in [\[1\]](#ba2016using) rather than the fast weight matrix. We turn to Design of experiments (DoE) for a framework that will allow us to test these hypotheses. More specifically we will perform a $$2^k r$$ factorial designs with replications where $$k$$ is the number of factors and $$r$$ the number of replications. In our simple case we will assume that our observations are i.i.d, this turns the problem of estimating the effects of each factor into a linear regression model with a binary explanatory variable
 
-\begin{equation}
+$$
     \begin{aligned}
         \mathbf{y} = \mathbf{X}^\intercal \mathbf{q} + \mathbf{q_0} + \epsilon 
     \end{aligned}
     \tag{3}\label{3}
-\end{equation}
+$$
 
-where $\mathbf{y}$ is vector of responses, $\mathbf{X}$ is a binary matrix that encodes the factors and their iterations (linear, quadratic, cubic), $\mathbf{q}$ and $\mathbf{q_0}$ are called fixed effects and $\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ is random noise. We the must perform experiments for all factor combinations (and interactions), namely $2^k$.
+where $$\mathbf{y}$$ is vector of responses, $$\mathbf{X}$$ is a binary matrix that encodes the factors and their iterations (linear, quadratic, cubic), $$\mathbf{q}$$ and $$\mathbf{q_0}$$ are called fixed effects and $$\epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$$ is random noise. We the must perform experiments for all factor combinations (and interactions), namely $$2^k$$.
 
 For our case study these factors are:
-1. **DEPTH**: a binary variable that represent whether we use $\eqref{2}$ which increases the overall depth of the network or the following:
-\begin{equation}
+1. **DEPTH**: a binary variable that represent whether we use $$\eqref{2}$$ which increases the overall depth of the network or the following:
+$$
     \begin{aligned}
         \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[ \left(\mathbf{W}_h  + \eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} \mathbf{h}_{\tau} \mathbf{h}_{\tau}^\intercal \right) \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t}\right]\right)
     \end{aligned}
     \tag{4}\label{4}
-\end{equation}
+$$
+
 which doesn’t increase the effective depth and would be more biologically plausible.
 2. **LN**: a binary variable for Layer normalization
 3. **HS**: a binary variable that encodes the hidden size of the network (64, 128)
@@ -145,7 +146,7 @@ Right from the start, we observe the following in Figure 2:
 * The simple RNN models **RNN-CTRL-HS=64** and **RNN-CTRL-HS=128** reach superior performance than their fast weights counterparts with no increased depth **RNN-FW-HS=64** and **RNN-FW-HS=128**. Although statistical test suggest that the diference is not significant with a p-value of 0.9766 for **HS=64** and 0.8672 of **HS=128**. This would suggest that fast weights with no extra depth and a simple RNN would reach the same accuracy on this task.
 * Layer normalization seems to be hurting the model **RNN-FW-LS-HS=64** but not its counterpart **RNN-FW-LS-HS=128**, which in fact reaches higher accuracies than the simple RNN baselines but this difference is still not significant with a p-value of 0.3253. This would suggest that fast weights are not in fact different from simple RNN in how the two use efficiently their weight connections.
 
-In order to calculate effects and percentage of variance explained by the models, we use as response the increase in accuracy of the fast weights model over the average of the control models, this is $y_{\text{FW-MODEl}} / AVG(y_{\text{CTRL-MODEl}})$. We summarize the result of the design in Table 1.
+In order to calculate effects and percentage of variance explained by the models, we use as response the increase in accuracy of the fast weights model over the average of the control models, this is $$y_{\text{FW-MODEl}} / AVG(y_{\text{CTRL-MODEl}})$$. We summarize the result of the design in Table 1.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
@@ -247,16 +248,16 @@ Finally, we can plot the response surface which offer a visual alternative to Ta
 
 Note: The title of this section is a reference to [\[5\]](#orhan2017note) which first suggested that the increased performance observed in the paper of Ba et. al. [\[1\]](#ba2016using) might actually be to factors not accounted in the authors experimental design. We note that the author of [\[5\]](#orhan2017note), unlike us, did not carry out the experiments necessary to prove this.
 
-On this final section of our case study, I am inclined to answer that "it depends". I think that fast weights as introduced in the paper do work, they increase the performance on the task, and reach higher accuracy faster than baseline methods. Our experimental design seems to strongly indicate that this increase in performance is mainly due to the extra depth added to the model. While the author of [\[5\]](#orhan2017note) seems to suggest that the Ba et. al. have fallen in trends 1 and 2 identified in [\[6\]](#lipton2018troubling). I instead suggest that Ba et. al. only fail to identify the sources of empirical gains. Does this invalidate the results of the paper? Not at all, I consider fast weights as a type of self-attention mechanism, unlike common self-attention mechanisms which use the scaled dot-product, fast weights use the outer-product becoming a sort of "outer-product self-attention". The developments of fast weights have followed a similar fashion to its dot-product counter parts which too started with very little to no extra depth added  [\[16\]](#luong2015effective), and now extra depth is such an important part of the model that it is made explicit with extra matrices to modulate the output (these matrices are the key, query and value weights) [\[17\]](#vaswani2017attention). In this vein, we see a similar story, of incrementing fast weights with extra depth, like in [\[2\]](#zhang2017learning) where they replace equation $\eqref{1}$ with 
+On this final section of our case study, I am inclined to answer that "it depends". I think that fast weights as introduced in the paper do work, they increase the performance on the task, and reach higher accuracy faster than baseline methods. Our experimental design seems to strongly indicate that this increase in performance is mainly due to the extra depth added to the model. While the author of [\[5\]](#orhan2017note) seems to suggest that the Ba et. al. have fallen in trends 1 and 2 identified in [\[6\]](#lipton2018troubling). I instead suggest that Ba et. al. only fail to identify the sources of empirical gains. Does this invalidate the results of the paper? Not at all, I consider fast weights as a type of self-attention mechanism, unlike common self-attention mechanisms which use the scaled dot-product, fast weights use the outer-product becoming a sort of "outer-product self-attention". The developments of fast weights have followed a similar fashion to its dot-product counter parts which too started with very little to no extra depth added  [\[16\]](#luong2015effective), and now extra depth is such an important part of the model that it is made explicit with extra matrices to modulate the output (these matrices are the key, query and value weights) [\[17\]](#vaswani2017attention). In this vein, we see a similar story, of incrementing fast weights with extra depth, like in [\[2\]](#zhang2017learning) where they replace equation $$\eqref{1}$$ with 
 
-\begin{equation}
+$$
     \begin{aligned}
         \mathbf{A}_t = \mathbf{W}_A \odot \mathbf{A}_{t-1} + \mathbf{W}_H \odot \mathbf{h}_t \mathbf{h}_t^\intercal,
     \end{aligned}
     \tag{5}\label{5}
-\end{equation}
+$$
 
-which according to the author allows the network to intelligently distribute inputs in $\mathbf{A}_t$ to increase memory capacity. Similarly, the work of [\[3\]](#schlag2018learning) which leverages several outer products to create tensors of higher orders embedded even with mode depth and capacity which as the author hypothesize introduce the combinatorial bias necessary to solve relational tasks. Finally, we note the work of [\[4\]](#le2020self) which update the original fast weights with keys, value and queries pair similar to the attention mechanism used in transformers, [\[17\]](#vaswani2017attention) but using outer-product rule instead of dot-product, which allows them to be state of the art in [Question Answering on bAbi](https://paperswithcode.com/sota/question-answering-on-babi).
+which according to the author allows the network to intelligently distribute inputs in $$\mathbf{A}_t$$ to increase memory capacity. Similarly, the work of [\[3\]](#schlag2018learning) which leverages several outer products to create tensors of higher orders embedded even with mode depth and capacity which as the author hypothesize introduce the combinatorial bias necessary to solve relational tasks. Finally, we note the work of [\[4\]](#le2020self) which update the original fast weights with keys, value and queries pair similar to the attention mechanism used in transformers, [\[17\]](#vaswani2017attention) but using outer-product rule instead of dot-product, which allows them to be state of the art in [Question Answering on bAbi](https://paperswithcode.com/sota/question-answering-on-babi).
 
 ## Conclusion
 
