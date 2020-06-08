@@ -57,7 +57,7 @@ $$
     \tag{2}\label{2}
 $$
 
-where $$\mathcal{LN} \[.\]$$ refers to layer normalization (LN) and the unrolling is run for $$S=1$$ steps.
+where $$\mathcal{LN}(.)$$ refers to layer normalization (LN) and the unrolling is run for $$S=1$$ steps.
 
 ### Main claim of the fast weights paper
 
@@ -92,7 +92,6 @@ $$
     \end{aligned}
     \tag{4}\label{4}
 $$
-
 which doesn’t increase the effective depth and would be more biologically plausible.
 2. **LN**: a binary variable for Layer normalization
 3. **HS**: a binary variable that encodes the hidden size of the network (64, 128)
@@ -108,9 +107,9 @@ The task that we choose, to perform to test our hypotheses, is associative retri
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:20px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:20px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
 .tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
@@ -146,13 +145,13 @@ Right from the start, we observe the following in Figure 2:
 * The simple RNN models **RNN-CTRL-HS=64** and **RNN-CTRL-HS=128** reach superior performance than their fast weights counterparts with no increased depth **RNN-FW-HS=64** and **RNN-FW-HS=128**. Although statistical test suggest that the diference is not significant with a p-value of 0.9766 for **HS=64** and 0.8672 of **HS=128**. This would suggest that fast weights with no extra depth and a simple RNN would reach the same accuracy on this task.
 * Layer normalization seems to be hurting the model **RNN-FW-LS-HS=64** but not its counterpart **RNN-FW-LS-HS=128**, which in fact reaches higher accuracies than the simple RNN baselines but this difference is still not significant with a p-value of 0.3253. This would suggest that fast weights are not in fact different from simple RNN in how the two use efficiently their weight connections.
 
-In order to calculate effects and percentage of variance explained by the models, we use as response the increase in accuracy of the fast weights model over the average of the control models, this is $$y_{\text{FW-MODEl}} / AVG(y_{\text{CTRL-MODEl}})$$. We summarize the result of the design in Table 1.
+In order to calculate effects and percentage of variance explained by the models, we use as response the increase in accuracy of the fast weights model over the average of the control models, this is $$y_{\text{FW-MODEl}} / \text{AVG}(y_{\text{CTRL-MODEl}})$$. We summarize the result of the design in Table 1.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:20px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:20px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-lhti{font-style:italic;text-align:center;vertical-align:middle}
 .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
