@@ -6,7 +6,7 @@ date:   2020-05-04 18:09:00
 use_math: true
 ---
 
-In this post, we will study the applicability of design of experiments (DoE) in machine learning (ML) experiments, to do so we will use a machine learning paper as a case study. I assume that the reader is familiar with RNN's. All the code necessary to reproduce these experiments can be found on [here](https://github.com/jeffhernandez1995/fastweights).
+In this post, we will study the applicability of design of experiments (DoE) in machine learning (ML) experiments, to do so we will use a machine learning paper as a case study. I assume that the reader is familiar with RNN's. For a simple introduction to factorial designs with replication, I consider these [slides](https://www.cs.rice.edu/~johnmc/comp528/lecture-notes/Lecture12_13.pdf) a great resource. Some starting code in python for factorial designs can be oun [here](https://charlesreid1.github.io/empirical-model-building/factorial_2level_3factor.html). All the code necessary to reproduce these experiments can be found on [here](https://github.com/jeffhernandez1995/fastweights).
 
 
 ## Motivation
@@ -53,7 +53,7 @@ The next hidden activity is computed unrolling an _inner loop_ of size $$S$$ tha
 
 $$
     \begin{aligned}
-        \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[\mathbf{W}_h \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t} + (\eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} f(\mathbf{W}_h \mathbf{h}_{t} +  \mathbf{W}_x \mathbf{x}_{t})\right]\right)
+        \mathbf{h}_{t+1} = f\left(\mathcal{LN}\left[\mathbf{W}_h \mathbf{h}_{t} + \mathbf{W}_x \mathbf{x}_{t} + (\eta \sum_{\tau=1}^{\tau=t-1} \lambda^{t - \tau -1} \mathbf{h}_{\tau} \mathbf{h}_{\tau}^\intercal ) f(\mathbf{W}_h \mathbf{h}_{t} +  \mathbf{W}_x \mathbf{x}_{t})\right]\right)
     \end{aligned}
     \tag{2}\label{2}
 $$
@@ -262,6 +262,18 @@ which according to the author allows the network to intelligently distribute inp
 ## Conclusion
 
 In this post, we have outlined the use of Design of Experiments (DoE) as tool for machine learning researches. We motivate its use with a discussion on recent troublesome trend in ML scholarship. We showed the strengths of DoE using a case study where we tested the claims of a ML paper [\[1\]](#ba2016using) using DoE and found that the observed increases in performance where due to factors not accounted in original experimental design. This methodology can be extended by including other hyper-parameters such as learning rate, optimizer, initialization schemes, random seeds, among others; and replacing the simple linear model used here with a hierarchical model as done in [\[13\]](#boquet2019decovac). The response surface methodology shown here can be used to select optimal combination of hyper-parameters in ML experiments as well as to give clarity into the true sources of empirical gains.
+
+---
+Cited as:
+```
+@article{hernandez2020experiments,
+  title   = "Design of experiments (DoE) in machine learning research",
+  author  = "Hernandez, Jefferson",
+  journal = "https://jeffhernandez1995.github.io/",
+  year    = "2020",
+  url     = "https://jeffhernandez1995.github.io/design_of_experiments,/machine_learning,/english/2020/05/04/fastweights/"
+}
+```
 
 ## _References_
 
