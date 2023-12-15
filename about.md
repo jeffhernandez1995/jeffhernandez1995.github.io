@@ -3,20 +3,16 @@ title: "About"
 ---
 
 ### About Me
+I am a second year computer science PhD student at [Vislang Lab](https://www.vislang.ai) in [Rice University](https://cs.rice.edu/), advised by [Prof. Vicente Ordonez](http://vicenteordonez.com). Prior to this, I obtained my bachelor's degree in Industrial Engineering from [ESPOL](http://www.espol.edu.ec/) (top 1% of the class), where I worked with [Prof. Andres G. Abad](https://www.researchgate.net/profile/Andres-Abad-2) on machine learning and computer vision. I also worked as a research assistant at [INARI Lab](https://inarilab.com/) on applications of computer vision to retail. I have also shortly worked as a Computer Vision engineer at [adaviv](https://www.adaviv.com/).
 
-Mi nombre es Jefferson Hernandez (Graduado de Ingenieria Industrial en la [ESPOL](http://www.espol.edu.ec/)) y estoy interesado en el *deep learning*. Tengo alrededor de tres años de experiencia en investigación en *machine learning* y áreas relacionadas. Ocasionalmente escribo en mi blog sobre cosas nuevas que aprendo y espero escribir mucho más en el futuro.
+I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in self-supervised learning for video data.
+I am currently working on multimodal learning for to solve vairous vision tasks using language.
 
-**Cosas en las que he trabajado**
-* *Deep Learning* (PyTorch, Caffe2, Tensorflow)
-* *Computer Vision*
-* *Machine Learning*
+As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
 
-**Mas informacion acerca de mi**
-* Perfil de [Github.](https://github.com/jeffhernandez1995)
-* Perfil de [LinkedIn.](https://www.linkedin.com/in/jefferson-hernandez-546a0b163/)
-* Mi [twitter](https://twitter.com/jefehern).
- 
-**Publiaciones**
+
+**Publications**
+* Hernandez, J., Villegas, R., & Ordonez, V. (2023). Visual Representation Learning from Unlabeled Video using Contrastive Masked Autoencoders. arXiv preprint arXiv:2303.12001. ([arxiv](https://arxiv.org/abs/2303.12001))
 * Hernandez, J., & Abad, A. G. (2018, May). Learning from multivariate discrete sequential data using a restricted Boltzmann machine model. In 2018 IEEE 1st Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-6). IEEE. ([link](https://ieeexplore.ieee.org/abstract/document/8484854), [arxiv](https://arxiv.org/abs/1804.10839))
 * Hernandez, J., & Abad, A. G. (2018, May). Spatial and Temporal Feature Extraction Using a Restricted Boltzmann Machine Model. In IEEE Colombian Conference on Applications in Computational Intelligence (pp. 3-13). Springer, Cham. ([link](https://link.springer.com/chapter/10.1007%2F978-3-030-03023-0_1))
 * Cobos, R., Hernandez, J., & Abad, A. G. (2019, June). A fast multi-object tracking system using an object detector ensemble. In 2019 IEEE Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-5). IEEE. ([link](https://ieeexplore.ieee.org/document/8781972), [arxiv](https://arxiv.org/abs/1908.04349))
