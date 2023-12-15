@@ -1,7 +1,7 @@
 title: "jeff's blog"
 author: "Jefferson Hernandez"
-description: "Blog para  experimentos rotos y pensamientos acerca de Machine Learning e Ingeniería Industrial"
-more: "Leer mas »"
+description: "Jeff's Blog"
+more: "Read more »"
 url: "jeffhernandez1995.github.io"
 baseurl: "/"
 paginate: 5
@@ -16,9 +16,10 @@ style:
   dark: false
 
 navigation:
+  - about.md
   - index.html
   - archive.html
-  - about.md
+
 
 
 comments:
@@ -28,8 +29,10 @@ comments:
 links: # see http://fontawesome.io/icons/#brand for all possible icons
   - twitter: "https://twitter.com/jefehern"
   - github: "https://github.com/jeffhernandez1995/"
-  - envelope: "mailto:jefehern@espol.edu.ec"
+  - envelope: "mailto:jeh16@rice.edu"
+  - book: "https://scholar.google.com/citations?user=Xk6-2C0AAAAJ&hl=en"
   - linkedin: "https://www.linkedin.com/in/jefferson-hernandez-546a0b163/"
+
 
 defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
 sass: {style: expanded}
