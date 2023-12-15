@@ -20,29 +20,30 @@
   .paper-box-image
     display: flex
     justify-content: center
-    width: 100%
-    order: 2
+    flex: 0 0 auto // Adjust width as needed, e.g., 30%
+    order: 1
 
     img
-      max-width: 400px
+      max-width: 100%
+      height: auto
       box-shadow: 3px 3px 6px #888
       object-fit: cover
 
   .paper-box-text
-    max-width: 100%
-    order: 1
+    flex: 1 1 auto // Adjust width as needed, e.g., 70%
+    order: 2
+    padding-left: 1em // Add some spacing between image and text
 
-@media (min-width: 500)
+@media (max-width: 768px) // Adjust for mobile responsiveness
   .paper-box
+    flex-direction: column
+
     .paper-box-image
-      justify-content: left
-      min-width: 150px
-      max-width: 15%
+      width: 100%
       order: 1
 
     .paper-box-text
-      justify-content: left
-      padding-left: 2em
-      max-width: 85%
       order: 2
+      padding-left: 0
+
 
