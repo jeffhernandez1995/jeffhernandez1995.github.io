@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
 ### About Me
@@ -10,7 +10,8 @@ I am currently working on multimodal learning for to solve vairous vision tasks 
 
 As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
 
-**Pre prints**
+### Pre prints
+
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
@@ -21,7 +22,7 @@ Novemeber 2023 <br />
 </div>
 </div>
 
-**Publications**
+### Publications
 * **Hernandez, J.**, Valarezo, G., Cobos, R., Kim, J. W., Palacios, R., & Abad, A. G. (2021). **Hierarchical Human Action Recognition to Measure the Performance of Manual Labor**. IEEE Access, 9, 103110-103119.
 * **Hernandez, J.**., Lopez, S., Valarezo, G., & Abad, A. G. (2021). **Automatic Time and Motion Study Using Deep Learning**. In Cyber-Physical, IoT, and Autonomous Systems in Industry 4.0 (pp. 147-162). CRC Press.
 * Cobos, R., **Hernandez, J.**., & Abad, A. G. (2019, June). **A fast multi-object tracking system using an object detector ensemble**. In 2019 IEEE Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-5). IEEE. ([link](https://ieeexplore.ieee.org/document/8781972), [arxiv](https://arxiv.org/abs/1908.04349))

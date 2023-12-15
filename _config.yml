@@ -16,9 +16,10 @@ style:
   dark: false
 
 navigation:
-  - index.html
-  - archive.html
   - about.md
+  - blog.html
+  - archive.html
+
 
 
 
