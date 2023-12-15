@@ -6,7 +6,7 @@ url: "jeffhernandez1995.github.io"
 baseurl: "/"
 paginate: 5
 permalink: pretty
-excerpt_separator: "\n\n\n" # two blank lines
+excerpt_separator: "\n\n" # two blank lines
 
 markdown: kramdown
 highlighter: rouge
@@ -24,7 +24,6 @@ navigation:
 
 comments:
   disqus: "https-jeffhernandez1995-github-io"
-#  isso: "comments.mysite.org"
 
 links: # see http://fontawesome.io/icons/#brand for all possible icons
   - twitter: "https://twitter.com/jefehern"
