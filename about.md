@@ -13,7 +13,9 @@ As a PhD student, I am always eager to collaborate with other researchers. If yo
 **Pre prints**
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
-Hernandez, J., Villegas, R., & Ordonez, V. (2023). **ViC-MAE: Self-Supervised Representation Learning from Images and Video with Contrastive Masked Autoencoders**. arXiv preprint arXiv:2303.12001. ([arxiv](https://arxiv.org/abs/2303.12001)) <br />
+**ViC-MAE: Self-Supervised Representation Learning from ** <br />
+**Images and Video with Contrastive Masked Autoencoders**. <br />
+[[Paper]](https://arxiv.org/abs/2303.12001) <br />
 </div>
 </div>
 
