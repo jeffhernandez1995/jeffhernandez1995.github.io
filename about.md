@@ -2,7 +2,6 @@
 title: "About Me"
 ---
 
-### About Me
 I am a second year computer science PhD student at [Vislang Lab](https://www.vislang.ai) in [Rice University](https://cs.rice.edu/), advised by [Prof. Vicente Ordonez](http://vicenteordonez.com). Prior to this, I obtained my bachelor's degree in Industrial Engineering from [ESPOL](http://www.espol.edu.ec/) (top 1% of the class), where I worked with [Prof. Andres G. Abad](https://www.researchgate.net/profile/Andres-Abad-2) on machine learning and computer vision. I also worked as a research assistant at [INARI Lab](https://inarilab.com/) on applications of computer vision to retail. I have also shortly worked as a Computer Vision engineer at [adaviv](https://www.adaviv.com/).
 
 I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in self-supervised learning for video data.
@@ -17,7 +16,7 @@ As a PhD student, I am always eager to collaborate with other researchers. If yo
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
  <br />
 <b>with Contrastive Masked Autoencoders</b>. [[Paper]](https://arxiv.org/abs/2303.12001)<br />
-<b>Jefferson Hernandez</b>,Ruben Villegas,Vicente Ordonez <br />
+<b>Jefferson Hernandez</b>, Ruben Villegas and Vicente Ordonez <br />
 Novemeber 2023 <br />
 </div>
 </div>
