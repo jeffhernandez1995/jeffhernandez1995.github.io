@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ViC-MAE: Self-Supervised Representation Learning from Images and Video
+    with Contrastive Masked Autoencoders</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <!-- <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.materialboxed');
+      var instances = M.Materialbox.init(elems, options);
+      });
+  </script> -->
+  <style>
+  /* Apply justification to paragraphs */
+  p {
+    text-align: justify;
+    margin: 0;
+    padding: 10px; /* Add padding for spacing */
+  }
+
+  h6 {
+    text-align: justify;
+    margin: 0;
+    padding: 10px; /* Add padding for spacing */
+    line-height: 2;
+  }
+
+  /* Add a divider style for separation */
+  .divider {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 0;
+  }
+
+  .image-row {
+      width: 100%;
+      text-align: justify;
+      overflow: auto; /* Clearfix for the floating elements */
+  }
+
+  .image-row img {
+      width: 48%; /* Adjust based on your requirement */
+      vertical-align: top;
+      display: inline-block; /* Alternative to float */
+  }
+
+  .image-left {
+      float: left;
+  }
+
+  .image-right {
+      float: right;
+  }
+</style>
+</head>
+<body class="section">
+    <div class="section">
+        <h3 class="header center black-text text-darken-4"><b>ViC-MAE: Self-Supervised Representation Learning from Images and Video
+            with Contrastive Masked Autoencoders</b></h3> 
+        <h5 class="header center purple-text text-darken-3">
+            <a target="_blank" href="https://jeffhernandez1995.github.io/">Jefferson Hernandez</a><sup>1</sup>, &nbsp; &nbsp;
+            <a target="_blank" href="https://www.cs.rice.edu/~vo9/">Vicente Ordóñez</a><sup>1</sup>, &nbsp; &nbsp;
+            <a target="_blank" href="https://rubenvillegas.me/">Ruben Villegas</a><sup>2</sup>, &nbsp; &nbsp;
+        </h5>
+        <h6 class="header center black-text text-darken-3"><sup>1</sup>Rice University, &nbsp; &nbsp; <sup>2</sup>Google DeepMind &nbsp; &nbsp; 
+        </h6>
+        <div class="section">
+            <div class="container">
+              <div class="row">
+                <h6 class="col s12 m1">
+                </h6>
+                <h5 class="flow-text col s12 m10">
+                  <div class="center">
+                    <i class="ai ai-obp ai-1x"></i> <a href="https://arxiv.org/abs/2303.12001"><b>Paper</b></a>
+                    &emsp; <i class="ai ai-open-materials ai-1x"></i> <a href=""><b> Code [coming soon!]</b></a>
+                    <br>
+                    </div>
+                </h5>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s8 m8 l8">
+                    <br>
+                    <h5 class="center"><b>Abstract</b></h5>
+                    <div class="divider"></div>
+                    <p>
+                        We propose ViC-MAE, a model that combines both Masked AutoEncoders (MAE) and contrastive learning. ViC-MAE is trained using a global featured obtained by pooling the local representations learned under an MAE reconstruction loss and leveraging this representation under a contrastive objective across images and video frames.
+                        We show that visual representations learned under ViC-MAE generalize well to both video and image classification tasks. 
+                        Particularly, ViC-MAE obtains state-of-the-art transfer learning performance from video to images on Imagenet-1k compared to the recently proposed OmniMAE by achieving a top-1 accuracy of 86% (+1.3% absolute improvement) when trained on the same data and 87.1% (+2.4% absolute improvement) when training on extra data. At the same time ViC-MAE outperforms most other methods on video benchmarks by obtaining 75.9% top-1 accuracy on the challenging Something something-v2 video benchmark .
+                        When training on videos and images from a diverse combination of datasets, our method maintains a balanced transfer-learning performance between video and image classification benchmarks, coming only as a close second to the best supervised method.
+                   </p>
+                   <div class="divider"></div>
+                   <br>
+               </div>
+               <div class="col s2 m2 l2"></div>
+               <div class="row">
+                <div class="col s12">
+                    <h5 class="center"><b>Overview</b></h5><br>
+                    <p class="center">
+                        <img class="teaser" src="vic_mae_teaser.png" width="60%">
+                        </p>
+                    <h6> Self-supervised techniques for video representation learning have resulted in considerable success, yielding powerful features that perform well across various downstream tasks. While <i>image-to-video</i> transfer learning has become quite common, resulting in robust video feature representations, the reverse, <i>video-to-image</i> transfer learning, has not been as successful. This discrepancy suggests a potential for improvement in how models trained on video data extract image features.
+                    Learning from video should also yield good image representations since videos naturally contain complex changes in pose, viewpoint, deformations, among others. These variations can not be simulated through the standard image augmentations used in joint-embedding methods or in masked image modeling methods.  In this work, we propose a <b>Vi</b>sual <b>C</b>ontrastive <b>M</b>asked <b>A</b>uto<b>E</b>ncoder (ViC-MAE), a model that learns from both images and video through self-supervision. Our model improves <i>video-to-image</i> transfer performance while maintaining performance on video representation learning.
+                    <br><br>
+
+                </div>
+
+              <div class="col s2 m2 l2"></div>
+               <div class="row">
+                <div class="col s12">
+                    <h5 class="center"><b>Method</b></h5><br>
+                    <!-- <h6> Given a base pre-trained vision-and-language model purely trained on image-text pairs such as ALBEF, 
+                      SelfEQ tunes the model so that for a given input image and text pair, 
+                      the visual attention map extracted using GradCAM produces a similar visual attention map when provided with the same image and a text paraphrase. 
+                      The figure below provides an overview of our method. 
+                      Another contribution of our work consists in exploiting a large language model (LLM) to automatically generate paraphrases for existing datasets 
+                      such as Visual Genome that contains textual descriptions of individual objects and regions, or MS-COCO and CC3M that contain global image descriptions. 
+                      We find that SelfEQ not only expands the vocabulary of objects that the base model is able to localize but more importantly, improves the visual grounding capabilities of the model. 
+                    </h6> -->
+                        <br><br>
+                    <p class="center">
+                        <img class="MethodDiagram" src="vicmae-model.png" width="80%">
+                    </p>
+                </div>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s8 m8 l8">
+                    <h6><strong>ViC-MAE</strong> inputs two distant frames from a video or two different views of an image using a siamese backbone (shared weights), and randomly masks them, before passing them through a ViT model which learns a representation of local features using masked image modeling. A global representation of the video is then constructed by global pooling of the local features learned by the ViT model trained to reconstruct individual patches using an <em>ℓ<sub>2</sub></em> loss. A standard predictor and a target encoder are used with a contrastive loss. Our use of an aggregation layer before the predictor network aids to avoid collapse of the learned global representations.
+                    </h6>
+                </div>
+                <div class="col s2 m2 l2"></div>
+               </div>
+
+               <!-- //////////////////////////// -->
+
+               <div class="row">
+                <div class="col s12">
+                    <h5 class="center"><b> Experimental Results </b></h5><br>
+                    <h6>
+                        Our main result evaluates ViC-MAE on two in-domain datasets that were used during training for most experiments: ImageNet-1K (images) and Kinetics-400 (video), and two out-of-domain datasets that no methods used during training: Places-365 (images) and Something-something-v2 (video). See table below shows our complete set of results including comparisons with the state-of-the-art on both supervised representation learning (typically using classification losses), and self-supervised representation learning (mostly using masked image modeling). We consider mostly recent methods building on visual transformers as the most recent TubeViT which is the state-of-the-art on these benchmarks relies on this type of architecture. Previous results on the same problem also use different backbones e.g., ResNet-50. They obtain 54.5%, 33.8%, and 55.6% top-1 accuracies on linear evaluation on ImageNet-1k. Since those works are not using the same setting we chose not to include them alongside others.
+
+                    </h6><br>
+                    <p class="center">
+                        <img class="table1" src="results.png" width="90%">
+                        <!-- <img class="table2" src="Table2.png" width="50%"> -->
+                    </p>
+                </div>
+                <div class="col s2 m2 l2"></div>
+               </div>
+
+              <!-- <div class="image-row">
+                <p>
+                  <img src="qualitative_visual_grounding_supp.png" class="image-left">
+                  <img src="qualitative_self_consistency_supp.png" class="image-right">
+                </p>
+              </div>
+              <div class="image-row">
+                <p>
+                  <img src="qualitative_visual_grounding_main.png" class="image-left">
+                  <img src="qualitative_self_consistency_main.png" class="image-right">
+                </p>
+              </div> -->
+
+               <!-- //////////////////////////// -->
+
+               <div class="row">
+                <div class="col s2 m2 l2"></div>
+                <div class="col s8 m8 l8">
+                    <br>
+                    <br>
+                    <br>
+                    <div class="divider"></div>
+                    <h6 class="center"><b>BibTeX</b></h6>
+                    <blockquote style="text-align: left;">
+                        <font face="Courier New">
+                            @article{hernandez2023visual, <br>
+                            title={Visual Representation Learning from Unlabeled Video using Contrastive Masked Autoencoders}, <br>
+                            author={Hernandez, Jefferson and Villegas, Ruben and Ordonez, Vicente}, <br>
+                            journal={arXiv preprint arXiv:2303.12001}, <br>
+                            year={2023}}
+                        </font>
+                    </blockquote>
+                    
+                </div>
+                <div class="col s2 m2 l2"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</body>
+</html>
