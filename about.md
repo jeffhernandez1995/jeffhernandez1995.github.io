@@ -22,6 +22,7 @@ Novemeber 2023 <br />
 </div>
 
 ### Publications
+* Kim, J. W., **Hernandez, J.**, Cobos, R., Palacios, R., & Abad, A. G. (2022, May). A View Invariant Human Action Recognition System for Noisy Inputs. In 2022 19th Conference on Robots and Vision (CRV) (pp. 67-74). IEEE.
 * **Hernandez, J.**, Valarezo, G., Cobos, R., Kim, J. W., Palacios, R., & Abad, A. G. (2021). **Hierarchical Human Action Recognition to Measure the Performance of Manual Labor**. IEEE Access, 9, 103110-103119.
 * **Hernandez, J.**., Lopez, S., Valarezo, G., & Abad, A. G. (2021). **Automatic Time and Motion Study Using Deep Learning**. In Cyber-Physical, IoT, and Autonomous Systems in Industry 4.0 (pp. 147-162). CRC Press.
 * Cobos, R., **Hernandez, J.**., & Abad, A. G. (2019, June). **A fast multi-object tracking system using an object detector ensemble**. In 2019 IEEE Colombian Conference on Applications in Computational Intelligence (ColCACI) (pp. 1-5). IEEE. ([link](https://ieeexplore.ieee.org/document/8781972), [arxiv](https://arxiv.org/abs/1908.04349))
