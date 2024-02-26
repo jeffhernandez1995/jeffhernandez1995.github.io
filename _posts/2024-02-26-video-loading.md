@@ -24,7 +24,7 @@ Since videos are most of the time redundat, people usually skip frames when givi
 
 Datasets are loaded from RAM, and the time is measured using the `time` library. We plot the troughput in videos per second.
 
-![troughput](../pictures/throughput.png)
+![troughput](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/throughput.png)
 
 For the standard method you pay a fix cost prices of prepocessing the dataset of approximately 2 hours using 64 cores. But after this the datasets is very versitile you can even change the FPS of the videos. This the second fastest method, but it is the most versatile it achieves a troughput of 276.55 videos per second. The slowest method is using ffmpeg, which achieves a troughput of 26.91 videos per second. The second fastest method is using decord, which achieves a troughput of 70.75 videos per second. The third fastest method is using torchvision.IO, which achieves a troughput of 42.36 videos per second. The fastest method is using FFCV, which achieves a troughput of 564.03 videos per second. But since the FFCV approach is based on the standar method it has a higher cost of preprocessing the dataset, which is approximately 1 hour using 64 cores. The FFCV approach is the fastest, but it is the most expensive in terms of disk space, it requires 946 GB of disk space to store the training dataset and 44 GB to store the validation dataset. While all the other methods require 348 GB and 29 of disk space to store the training and validation datasets, respectively. The FFCV approach is recomended when you know that you are going to use the dataset in the same configuration several times. The standard method is recomended when you are going to use for batch inference, since it is the most versatile. The other methods are simply not recomended, since they are slower than the standard method.
 
@@ -150,7 +150,7 @@ One question that I have always ponder is what is the best way to evaluate a vid
   </tr>
 
   <tr>
-    <td class="tg-8jgo" colspan="4"><span style="font-weight:bold">Table 1: </span><span style="font-weight:normal">Examples of video model evaluation on the Kinetics-400 benchmark.</span></td>
+    <td class="tg-8jgo" colspan="5"><span style="font-weight:bold">Table 1: </span><span style="font-weight:normal">Examples of video model evaluation on the Kinetics-400 benchmark.</span></td>
   </tr>
 </tbody>
 </table>
@@ -166,7 +166,7 @@ The models on the HUB that I found are:
 - [ViViT](https://arxiv.org/pdf/2103.15691.pdf) on the following configurations: [Base](https://huggingface.co/google/vivit-b-16x2-kinetics400). Trained using 32 frames and skipping 2.
 
 You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading).
-![results](../pictures/results.png)
+![results](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/results.png)
 
 We see a significant drop in accuracy.
 
