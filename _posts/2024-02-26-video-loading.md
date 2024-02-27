@@ -158,7 +158,7 @@ One question that I have always ponder is what is the best way to evaluate a vid
 </tbody>
 </table>
 
-As we can see numbers are all over the place, and there is no standard.  Look at the table and tell me what model is better? I argue that it is kind of hard to tell. Like do we need all those spatial views? If I were to deploy this models wouldnt taking 3 spatial crops make it super slow. On the other end there are models that only need 5 views to see the whole video but take 7 or 10 is that necessary or is it just a way to get better results on the benchmarks? I think that the answer is the latter.
+As we can see numbers are all over the place, and there is no standard.  Look at the table and tell me what model is better? I argue that it is kind of hard to tell. Like do we need all those spatial views? If I were to deploy these models wouldnt taking 3 spatial crops make it super slow. On the other end there are models that only need 5 views to see the whole video but take 7 or 10 is that necessary or is it just a way to get better results on the benchmarks? I think that the answer is the latter.
 
 Let's do an exercise and evaluate some open souce models on Hugging Face using the FFCV approach. But first lets us think what would be a fair evaluation? I think this is not a question with an easy answer, and the current consensus seems to be _do what shows best perfomance on the benchmarks_. I am guilty of falling into this myself with the ViC-MAE results. 
 
