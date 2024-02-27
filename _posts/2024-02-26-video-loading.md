@@ -170,7 +170,7 @@ The models on the HUB that I found are:
 - [TimeSformer](https://arxiv.org/pdf/2102.05095.pdf) on the following configurations: [Base](https://huggingface.co/facebook/timesformer-base-finetuned-k400), [HR](https://huggingface.co/facebook/timesformer-hr-finetuned-k400). Trained using 8 frames and skipping 4 and 16 frames and skipping 4, respectively.
 - [ViViT](https://arxiv.org/pdf/2103.15691.pdf) on the following configurations: [Base](https://huggingface.co/google/vivit-b-16x2-kinetics400). Trained using 32 frames and skipping 2.
 
-You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading). The View Invariant Accuracy Line is what you would expect if the performance of the models is not affected by a change of view. The results are as follows:
+You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading). The "View Invariant Accuracy" line is what you would expect if the performance of the models is not affected by a change of view. The results are as follows:
 ![results](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/results.png)
 
 We see a significant drop in accuracy, on average approximately 3%. If you think about it, on 2022 the year VideoMAE came out, the best model was [MVT/H](https://arxiv.org/abs/2201.04288v4) with an accuracy of 89.9%, if we assume the trend holds that means an accuracy drop to approximately 86% when chaging views or almost a year of progress. You should not take this as a criticism of the models, the work that the authors did is amazing and I am a big fan of their work. But I think that this is a criticism of the way we evaluate video models.
