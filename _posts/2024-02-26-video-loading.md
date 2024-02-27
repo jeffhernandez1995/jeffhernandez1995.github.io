@@ -175,8 +175,8 @@ You can see the results in table format [here](https://github.com/jeffhernandez1
 We see a significant drop in accuracy, on average approximately 3%. If you think about it, on 2022 the year VideoMAE came out, the best model was [MVT/H](https://arxiv.org/abs/2201.04288v4) with an accuracy of 89.9%, if we assume the trend holds that means an accuracy drop to approximately 86% when chaging views or almost a year of progress. 
 
 When calculating a linear fit over the original accuracies of the models and there new accuracies, we get:
+
 $$
-\centering
 \begin{aligned}
     \text{acc}_{\text{new}} &= 2.01 \cdot \text{acc}_{\text{orig}} - 89.7 \\
 \end{aligned}
