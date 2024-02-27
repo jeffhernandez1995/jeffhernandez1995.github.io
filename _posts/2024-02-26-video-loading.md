@@ -34,12 +34,14 @@ For the standard method you pay a fix cost prices of prepocessing the dataset of
 One question that I have always ponder is what is the best way to evaluate a video model. In image land, think ImageNet-1K, the most common way to evaluate a model is to use a single center crop. You might see people doing Multi-crop at test time techniques, but this is really not common. This is in contrast to video land, where as previously discussed this varies from paper to paper and it varies a lot. Here is a table of some examples:
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+.tg  {border-collapse:collapse;border-spacing:0;width:80%; /* Adjust this value for desired width */
+      margin:0px auto;} /* This centers the table */
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
+  overflow:hidden;padding:10px 5px;word-break:normal;text-align:center;} /* Center text */
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+  font-weight:bold; /* Ensure header is bold */
+  overflow:hidden;padding:10px 5px;word-break:normal;text-align:center;} /* Center text */
+.tg .tg-0pky{border-color:inherit;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
@@ -146,7 +148,7 @@ One question that I have always ponder is what is the best way to evaluate a vid
   <tr>
     <td class="tg-0pky"><a href="https://arxiv.org/pdf/2211.09552.pdf" target="_blank">UniFormerV2</a></td>
     <td class="tg-0pky">32x8</td>
-    <td class="tg-0pky">2x3</td>
+    <td class="tg-0pky">3x2</td>
     <td class="tg-0pky">-</td>
     <td class="tg-0pky">89.3</td>
   </tr>
@@ -174,6 +176,7 @@ We see a significant drop in accuracy, on average approximately 3%. If you think
 
 When calculating a linear fit over the original accuracies of the models and there new accuracies, we get:
 $$
+\centering
 \begin{aligned}
     \text{acc}_{\text{new}} &= 2.01 \cdot \text{acc}_{\text{orig}} - 89.7 \\
 \end{aligned}
