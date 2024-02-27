@@ -183,7 +183,7 @@ $$
 \end{aligned}
 $$
 
-The slope greater than 1 indicates that as models get better accuracies they become more invariant to view changes. You can also interpret this as bigger models are more invariant to view changes. We can see the most egregious example of this on the smallest model (VideoMAE/S-16) that sees a dramatic drop of more than 20% points in accuracy. In general, we expect the largest and better models to be more invariant to view changes, think [InternVideo](https://arxiv.org/abs/2212.03191) and [VideoMAE V2-g](https://arxiv.org/abs/2303.16727v2) that both cross the billion parameter mark and get >90% accuracies.
+The slope greater than 1 indicates that as models get better accuracies they become more invariant to view changes. You can also interpret this as bigger models are more invariant to view changes, since larger models are usually the best. We can see the most egregious example of this on the smallest model (VideoMAE/S-16) that sees a dramatic drop of more than 20% points in accuracy. In general, we expect the largest and better models to be more invariant to view changes, think [InternVideo](https://arxiv.org/abs/2212.03191) and [VideoMAE V2-g](https://arxiv.org/abs/2303.16727v2) that both cross the billion parameter mark and get >90% accuracies.
 
 ### Why is this important?
 In general, I think that using spatiotemporal views in video models is a way to compensate for the fact that our models can not see more than a few seconds of video and can not handle large frame resolutions. We dont know where an action is happening and when it is happening, so as a proxy we evaluate our models in all posible partitions and compute a result over these partitions. But is this what we really want our models to do?
