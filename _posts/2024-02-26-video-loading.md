@@ -157,7 +157,7 @@ One question that I have always ponder is what is the best way to evaluate a vid
 
 As we can see numbers are all over the place, and there is no standard.  Look at the table and tell me what model is better? It is very hard to tell. Let's do an exercise and evaluate some open souce models on Hugging Face using the FFCV approach. But first lets us think what would be a fair evaluation? I think this is not a question with an easy answer, and the current consensus seems to be _do what shows best perfomance on the benchmarks_. I am guilty of falling into this myself with the ViC-MAE results. 
 
-Following similar steps to the image community, indicates that the best most fair would be a center spatial and a center temporal view. But this is a very strong assumption videos are more messy than images, assuming that the action occurs at the center of the video is a very strong assumption, even stronger (to me) than the action occuring at the center of the frame (like in datasets like ImageNet-1K, where given how they where collected this is a reasonable assumption). I am gonna go ahead an use 1 center crop and 5 center temporal crops. There might be a better way to do this, but I think this is a good start. My reasoning stems that if most models are trained using 16 frames skiping 4, you would only need 5 temporal crops to cover the whole video.
+Following similar steps to the image community, indicates that the best most fair would be a center spatial and a center temporal view. But this is a very strong assumption videos are more messy than images, assuming that the action occurs at the center of the video is a very strong assumption, even stronger (to me) than the action occuring at the center of the frame (like in datasets like ImageNet-1K, where given how they where collected this is a reasonable assumption). I am gonna go ahead an use 1 center crop and 5 center temporal crops. There might be a better way to do this, but I think this is a good start. My reasoning stems that if most models are trained using 16 frames skiping 4 (or 32 skiping 2), you would only need 5 temporal crops to cover the whole video.
 
 The models on the HUB that I found are:
 - [VideoMAE](https://arxiv.org/abs/2203.12602) on the following configurations: [Small](https://huggingface.co/MCG-NJU/videomae-small-finetuned-kinetics), [Base](https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics), [Large](https://huggingface.co/MCG-NJU/videomae-large-finetuned-kinetics), [Huge](https://huggingface.co/MCG-NJU/videomae-huge-finetuned-kinetics). Trained using 16 frames and skipping 4.
@@ -168,7 +168,7 @@ The models on the HUB that I found are:
 You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading).
 ![results](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/results.png)
 
-We see a significant drop in accuracy.
+We see a significant drop in accuracy, on average approximately 3%. If you think about it on 2022 the year VideoMAE came out  the best model was [MVT/H](https://arxiv.org/abs/2201.04288v4) with an accuracy of 89.9
 
 
 {% include disqus.html %}
