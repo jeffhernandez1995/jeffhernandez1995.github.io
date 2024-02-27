@@ -158,9 +158,11 @@ One question that I have always ponder is what is the best way to evaluate a vid
 </tbody>
 </table>
 
-As we can see numbers are all over the place, and there is no standard.  Look at the table and tell me what model is better? I argue that it is kind of hard to tell. Let's do an exercise and evaluate some open souce models on Hugging Face using the FFCV approach. But first lets us think what would be a fair evaluation? I think this is not a question with an easy answer, and the current consensus seems to be _do what shows best perfomance on the benchmarks_. I am guilty of falling into this myself with the ViC-MAE results. 
+As we can see numbers are all over the place, and there is no standard.  Look at the table and tell me what model is better? I argue that it is kind of hard to tell. Like do we need all those spatial views? If I were to deploy this models wouldnt taking 3 spatial crops make it super slow. On the other end there are models that only need 5 views to see the whole video but take 7 or 10 is that necessary or is it just a way to get better results on the benchmarks? I think that the answer is the latter.
 
-Following similar steps to the image community, indicates that the best most fair would be a center spatial and a center temporal view. But this is a very strong assumption. Videos are more messy than images, assuming that the action occurs at the center of the video is a very strong assumption, even stronger (to me) than the action occuring at the center of the frame (like in datasets like ImageNet-1K, where given how they where collected this is a reasonable assumption). I am gonna go ahead and for the sake of argument change the evaluation setting to use 1 resize of the whole frame and 5 temporal crops. My reasoning stems that if most models are trained using 16 frames skiping 4 (or 32 skiping 2), you would only need 5 temporal crops to cover the whole video on Kinetics-400 where the average video length is 10 seconds.
+Let's do an exercise and evaluate some open souce models on Hugging Face using the FFCV approach. But first lets us think what would be a fair evaluation? I think this is not a question with an easy answer, and the current consensus seems to be _do what shows best perfomance on the benchmarks_. I am guilty of falling into this myself with the ViC-MAE results. 
+
+Following similar steps to the image community, indicates that the best most fair way would be a center spatial and a center temporal view. But this is a very strong assumption. Videos are more messy than images, assuming that the action occurs at the center of the video is a very strong assumption, even stronger (to me) than the action occuring at the center of the frame (like in datasets like ImageNet-1K, where given how they were collected this is a reasonable assumption). I am gonna go ahead and for the sake of argument change the evaluation setting to use 1 resize of the whole frame and 5 temporal crops. My reasoning stems that if most models are trained using 16 frames skiping 4 (or 32 skiping 2), you would only need 5 temporal crops to cover the whole video on Kinetics-400 where the average video length is 10 seconds.
 
 The models on the HUB that I found are:
 - [VideoMAE](https://arxiv.org/abs/2203.12602) on the following configurations: [Small](https://huggingface.co/MCG-NJU/videomae-small-finetuned-kinetics), [Base](https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics), [Large](https://huggingface.co/MCG-NJU/videomae-large-finetuned-kinetics), [Huge](https://huggingface.co/MCG-NJU/videomae-huge-finetuned-kinetics). Trained using 16 frames and skipping 4.
@@ -168,12 +170,12 @@ The models on the HUB that I found are:
 - [TimeSformer](https://arxiv.org/pdf/2102.05095.pdf) on the following configurations: [Base](https://huggingface.co/facebook/timesformer-base-finetuned-k400), [HR](https://huggingface.co/facebook/timesformer-hr-finetuned-k400). Trained using 8 frames and skipping 4 and 16 frames and skipping 4, respectively.
 - [ViViT](https://arxiv.org/pdf/2103.15691.pdf) on the following configurations: [Base](https://huggingface.co/google/vivit-b-16x2-kinetics400). Trained using 32 frames and skipping 2.
 
-You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading).
+You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading). The View Invariant Accuracy Line is what you would expect if the performance of the models is not affected by a change of view. The results are as follows:
 ![results](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/results.png)
 
-We see a significant drop in accuracy, on average approximately 3%. If you think about it, on 2022 the year VideoMAE came out, the best model was [MVT/H](https://arxiv.org/abs/2201.04288v4) with an accuracy of 89.9%, if we assume the trend holds that means an accuracy drop to approximately 86% when chaging views or almost a year of progress. 
+We see a significant drop in accuracy, on average approximately 3%. If you think about it, on 2022 the year VideoMAE came out, the best model was [MVT/H](https://arxiv.org/abs/2201.04288v4) with an accuracy of 89.9%, if we assume the trend holds that means an accuracy drop to approximately 86% when chaging views or almost a year of progress. You should not take this as a criticism of the models, the work that the authors did is amazing and I am a big fan of their work. But I think that this is a criticism of the way we evaluate video models.
 
-When calculating a linear fit over the original accuracies of the models and there new accuracies, we get:
+When calculating a linear fit (using very few data points, I know, sue me!) over the original accuracies of the models and their new accuracies, we get:
 
 $$
 \begin{aligned}
