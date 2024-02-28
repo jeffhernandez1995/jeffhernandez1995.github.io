@@ -180,7 +180,7 @@ When calculating a linear fit (using very few data points, I know, sue me!) over
 
 $$
 \begin{aligned}
-    \text{acc}_{\text{new}} &= 2.01 \cdot \text{acc}_{\text{orig}} - 89.7 \\
+    \text{acc}_{\text{new}} &= 1.75 \cdot \text{acc}_{\text{orig}} - 67.8 \\
 \end{aligned}
 $$
 
