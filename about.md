@@ -21,7 +21,7 @@ June 2024 <br />
 
 ### Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/genllava_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
  <br />
