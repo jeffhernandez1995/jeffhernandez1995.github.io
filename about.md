@@ -11,7 +11,7 @@ As a PhD student, I am always eager to collaborate with other researchers. If yo
 
 ### Pre prints
 
-<div class='paper-box'><div class='paper-box-image'><div><img src='pictues/genllava_teaser.png' alt="GenLLaVA teaser" width=150px></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/genllava_teaser.png' alt="GenLLaVA teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>Generative Visual Instruction Tuning</b>. [[Paper]](https://arxiv.org/abs/2406.11262) <br />
 <b>Jefferson Hernandez</b>, Ruben Villegas and Vicente Ordonez <br />
@@ -21,7 +21,7 @@ June 2024 <br />
 
 ### Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/genllava_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
  <br />
