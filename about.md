@@ -11,17 +11,27 @@ As a PhD student, I am always eager to collaborate with other researchers. If yo
 
 ### Pre prints
 
+<div class='paper-box'><div class='paper-box-image'><div><img src='pictues/genllava_teaser.png' alt="GenLLaVA teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>Generative Visual Instruction Tuning</b>. [[Paper]](https://arxiv.org/abs/2406.11262) <br />
+<b>Jefferson Hernandez</b>, Ruben Villegas and Vicente Ordonez <br />
+June 2024 <br />
+</div>
+</div>
+
+### Publications
+
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
  <br />
 <b>with Contrastive Masked Autoencoders</b>. [[Paper]](https://arxiv.org/abs/2303.12001) [[Project Page]](https://jeffhernandez1995.github.io/vicmae/) [[Code]](https://github.com/jeffhernandez1995/ViC-MAE)<br />
 <b>Jefferson Hernandez</b>, Ruben Villegas and Vicente Ordonez <br />
-Novemeber 2023 <br />
+Novemeber 2023, ECCV 2024 <br />
 </div>
 </div>
 
-### Publications
+* Palacios, R., Piguave, B. V., **Hernandez, J.**, & Abad, A. G. (2023, October). Automatic Retail Dataset Creation with Multiple Sources of Information Synchronization. In 2023 Twelfth International Conference on Image Processing Theory, Tools and Applications (IPTA) (pp. 1-6). IEEE.
 * Kim, J. W., **Hernandez, J.**, Cobos, R., Palacios, R., & Abad, A. G. (2022, May). A View Invariant Human Action Recognition System for Noisy Inputs. In 2022 19th Conference on Robots and Vision (CRV) (pp. 67-74). IEEE.
 * **Hernandez, J.**, Valarezo, G., Cobos, R., Kim, J. W., Palacios, R., & Abad, A. G. (2021). **Hierarchical Human Action Recognition to Measure the Performance of Manual Labor**. IEEE Access, 9, 103110-103119.
 * **Hernandez, J.**., Lopez, S., Valarezo, G., & Abad, A. G. (2021). **Automatic Time and Motion Study Using Deep Learning**. In Cyber-Physical, IoT, and Autonomous Systems in Industry 4.0 (pp. 147-162). CRC Press.
