@@ -17,7 +17,7 @@ We try several methods to load the Kinetics-400 dataset (241255 videos in train,
 - Using the [python bindings of ffmpeg](https://github.com/kkroening/ffmpeg-python) to load the videos. This just requires the videos to be stored as mp4 files.
 - Using [FFCV](https://github.com/libffcv/ffcv), we store the videos as a sequence of JPEG images. This is requires several preprocessing steps, (1) We extract the frames from the videos, (2) We resize the frames to a maximum size, (3) We encode the frames as JPEG images, (4) We store the frames in a single FFCV file. Since you are storing the frames as JPEG images, there is an increase in disk space, but the loading time is reduced. This is the method that I use in my research.
 
-Since videos are most of the time redundat, people usually skip frames when giving them to a neural network. This is ussally denoted as $$T \times t$$, where $$T$$ is the number of frames the model sees and $$t$$ is the number of frames that are skipped in between. We use $$T=8$$ and $$t=4$$, which is the standard for Kinetics-400. Similarly, for evaluation people usually try to take full coverage of the video, so they split the video into several crops (this can be overlapin or non-overlaping) and average the predictions. Crops are denoted as $$s \times \tau$$, where $$s$$ is the number of spatial crops and $$\tau$$ is the number of time crops. We use 5 time crops an 1 spatial crop, there is no standard and this varies from paper to paper.
+Since videos are most of the time redundat, people usually skip frames when giving them to a neural network. This is ussally denoted as $$T \times t$$, where $$T$$ is the number of frames the model sees and $$t$$ is the number of frames that are skipped in between. We use $$T=16$$ and $$t=4$$, which is kind of the standard for Kinetics-400. Similarly, for evaluation people usually try to take full coverage of the video, so they split the video into several crops (this can be overlapin or non-overlaping) and average the predictions. Crops are denoted as $$s \times \tau$$, where $$s$$ is the number of spatial crops and $$\tau$$ is the number of time crops. We use 5 time crops an 1 spatial crop, there is no standard and this varies from paper to paper.
 
 
 ### Results
@@ -32,7 +32,7 @@ For the standard method you pay a fix cost prices of prepocessing the dataset of
 One question that I have always ponder is what is the best way to evaluate a video model. In image land, think ImageNet-1K, the most common way to evaluate a model is to use a single center crop. You might see people doing Multi-crop at test time techniques, but this is really not common. This is in contrast to video land, where as previously discussed this varies from paper to paper and it varies a lot. Here is a table of some examples:
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto; width: auto; max-width: 80%;} /* Adjust max-width as needed */
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -168,7 +168,7 @@ The models on the HUB that I found are:
 You can see the results in table format [here](https://github.com/jeffhernandez1995/video-loading).
 ![results](https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/master/pictures/results.png)
 
-We see a significant drop in accuracy.
+We see a significant drop in accuracy. The best model has an accuracy drop of 3% when we remove the spatial views. I have added a straight black line to the plot to symbolize models from an ideal world where there perfomance does not depend on the number of views the model sees.
 
 
 {% include disqus.html %}
