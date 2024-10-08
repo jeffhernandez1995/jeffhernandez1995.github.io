@@ -81,7 +81,9 @@ June 2019, ColCACI 2019 <br />
 
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/rbm_multivariate.png' alt="RBM Model" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
-<b>Learning from multivariate discrete sequential data using a restricted Boltzmann machine model</b>. [[Paper]](https://ieeexplore.ieee.org/abstract/document/8484854) [[arxiv]](https://arxiv.org/abs/1804.10839) <br />
+<b>Learning from multivariate discrete sequential data </b>
+ <br />
+ <b> using a restricted Boltzmann machine model</b>. [[Paper]](https://ieeexplore.ieee.org/abstract/document/8484854) [[arxiv]](https://arxiv.org/abs/1804.10839) <br />
 <b>Jefferson Hernandez</b>, and Andres Abad <br />
 May 2018, ColCACI 2018 <br />
 </div>
