@@ -57,7 +57,7 @@ Jaywon Koo*, <b>Jefferson Hernandez*</b>, Moayed Haji-Ali, Ziyan Yang, Vicente O
 <div class='paper-box'><div class='paper-box-image'><div><img src="{{ '/pictures/pop_teaser.png' | relative_url }}" alt="cFreD teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>Improving Large Vision and Language Models by Learning from a Panel of Peers</b> [[arxiv]](https://arxiv.org/abs/2509.01610)<br />
- <b>Jefferson Hernandez*</b>, Jing Shi, Simon Jenni, Vicente Ordonez, Kushal Kafle <br />
+ <b>Jefferson Hernandez</b>, Jing Shi, Simon Jenni, Vicente Ordonez, Kushal Kafle <br />
 November 2024, ICCV 2025 <br />
 </div>
 </div>

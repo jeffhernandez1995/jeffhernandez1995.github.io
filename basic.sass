@@ -15,7 +15,8 @@
   flex-direction: row
   flex-wrap: wrap
   border-bottom: 1px solid #efefef
-  padding: 2em 0
+  // Reduce vertical spacing between items
+  padding: 1em 0
 
   .paper-box-image
     display: flex
@@ -32,7 +33,8 @@
   .paper-box-text
     flex: 1 1 auto // Adjust width as needed, e.g., 70%
     order: 2
-    padding-left: 1em // Add some spacing between image and text
+    // Slightly tighter spacing between image and text
+    padding-left: 0.75em // Add some spacing between image and text
 
 @media (max-width: 768px) // Adjust for mobile responsiveness
   .paper-box
@@ -45,5 +47,4 @@
     .paper-box-text
       order: 2
       padding-left: 0
-
 
