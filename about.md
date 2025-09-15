@@ -2,14 +2,15 @@
 title: "About Me"
 ---
 
-I am a second year computer science PhD student at [Vislang Lab](https://www.vislang.ai) in [Rice University](https://cs.rice.edu/), advised by [Prof. Vicente Ordonez](http://vicenteordonez.com). Prior to this, I obtained my bachelor's degree in Industrial Engineering from [ESPOL](http://www.espol.edu.ec/) (top 1% of the class), where I worked with [Prof. Andres G. Abad](https://www.researchgate.net/profile/Andres-Abad-2) on machine learning and computer vision. I also worked as a research assistant at [INARI Lab](https://inarilab.com/) on applications of computer vision to retail. I have also shortly worked as a Computer Vision engineer at [adaviv](https://www.adaviv.com/).
+Hola! I am Jefferson Hernandez, a PhD student in Computer Science at [Rice University](https://cs.rice.edu/), working in self-supervised learning for multimodal data and reasoning in Large language models under the supervision of [Prof. Vicente Ordonez](http://vicenteordonez.com) at [Vislang Lab](https://www.vislang.ai). 
+I am currently a Research Intern at [Meta Reality Labs](https://tech.facebook.com/reality-labs/) working with [Ishwarya Ananthabhotla](https://www.ishwarya.me/). I previously interned at [Adobe Research](https://research.adobe.com/) working with [Kushal Kafle](https://kushalkafle.com/). I have also colaborated with [Ruben Villegas](https://rubenvillegas.me/) on self-supervised learning for video data.
+Prior to this, I obtained my bachelor's degree in Industrial Engineering from [ESPOL](http://www.espol.edu.ec/) (top 1% of the class), where I worked with [Prof. Andres G. Abad](https://www.researchgate.net/profile/Andres-Abad-2) on machine learning and computer vision. I also worked as a research assistant at [INARI Lab](https://inarilab.com/) on applications of computer vision to retail. I have also shortly worked as a Computer Vision engineer at [adaviv](https://www.adaviv.com/).
 
-I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in self-supervised learning for video data.
-I am currently working on multimodal learning for to solve vairous vision tasks using language.
+I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in test-time-training for LLMs and self-supervised learning for images, text, video and audio.  As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
 
-As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
+### 🔥 News
 
-### Pre prints
+### 📝 Preprints
 
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/genllava_teaser.png' alt="GenLLaVA teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
@@ -19,7 +20,7 @@ June 2024 <br />
 </div>
 </div>
 
-### Publications
+### 📝 Publications 
 
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
