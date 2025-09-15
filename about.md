@@ -10,15 +10,31 @@ I am interested in computer vision, natural language processing, and machine lea
 
 ### 🔥 News
 <hr />
-
+- *2025.06*: &nbsp;📄 [New Work] **[GViT](https://arxiv.org/abs/2506.23532)** is on arXiv.
+- *2025.05*: &nbsp;📄 [New Work] **[ProxyThinker](https://arxiv.org/abs/2505.24872)** is on arXiv.
 - *2025.03*: &nbsp;🎉🎉 **[cFreD](https://arxiv.org/abs/2503.21721)** is accepted at WACV 2026.
+- *2024.11*: &nbsp;🎉🎉 **[Panel-of-Peers](https://arxiv.org/abs/2509.01610)** is accepted at ICCV 2025.
 - *2024.06*: &nbsp;📄 [New Work] **[GenLLaVA](https://arxiv.org/abs/2406.11262)** is on arXiv.
 - *2023.11*: &nbsp;🎉🎉 **[ViC-MAE](https://jeffhernandez1995.github.io/vicmae/)** accepted at ECCV 2024.
 - *2022.08*: &nbsp;🚀 Started PhD journey at Rice University under Prof. Vicente Ordonez.
 
-
 ### 📝 Preprints
 <hr />
+<div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/gvit_teaser.png' | relative_url }}" alt="GVIT teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>GViT: Representing Images as Gaussians for Visual Recognition</b>. [[arxiv]](https://arxiv.org/abs/2506.23532) <br />
+<b>Jefferson Hernandez</b>, Ruozhen He, Guha Balakrishnan, Alexander C. Berg, Vicente Ordonez <br />
+June 2025 <br />
+</div>
+</div>
+
+<div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/proxythinker_teaser.png' | relative_url }}" alt="ProxyThinker teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>ProxyThinker: Test-Time Guidance through Small Visual Reasoners</b>. [[arxiv]](https://arxiv.org/abs/2505.24872) <br />
+<b>Zilin Xiao, Jaywon Koo, Siru Ouyang, <b>Jefferson Hernandez</b>, Yu Meng, Vicente Ordonez <br />
+May 2025 <br />
+</div>
+</div>
 
 <div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/genllava_teaser.png' | relative_url }}" alt="GenLLaVA teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
@@ -28,16 +44,21 @@ June 2024 <br />
 </div>
 </div>
 
-
-
 ### 📝 Publications 
 <hr />
-
 <div class='paper-box'><div class='paper-box-image'><div><img src="{{ '/pictures/cfred_teaser.png' | relative_url }}" alt="cFreD teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>Evaluating Text-to-Image Synthesis with a Conditional Fréchet Distance</b> [[arxiv]](https://arxiv.org/abs/2503.21721) [[Code]](https://github.com/JaywonKoo17/FIDMetric)<br />
 Jaywon Koo*, <b>Jefferson Hernandez*</b>, Moayed Haji-Ali, Ziyan Yang, Vicente Ordonez <br />
 *Equal contribution. March 2025, WACV 2026 <br />
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><img src="{{ '/pictures/pop_teaser.png' | relative_url }}" alt="cFreD teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>Improving Large Vision and Language Models by Learning from a Panel of Peers</b> [[arxiv]](https://arxiv.org/abs/2509.01610)<br />
+ <b>Jefferson Hernandez*</b>, Jing Shi, Simon Jenni, Vicente Ordonez, Kushal Kafle <br />
+November 2024, ICCV 2025 <br />
 </div>
 </div>
 
