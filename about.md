@@ -1,5 +1,9 @@
 ---
 title: "About Me"
+permalink: /
+redirect_from: 
+  - /about/
+  - /about.html
 ---
 
 Hola! I am **Jefferson Hernandez**, a PhD student in Computer Science at [Rice University](https://cs.rice.edu/), working in self-supervised learning for multimodal data and reasoning in Large language models under the supervision of [Prof. Vicente Ordonez](http://vicenteordonez.com) at [Vislang Lab](https://www.vislang.ai). 
@@ -9,7 +13,7 @@ Prior to this, I obtained my bachelor's degree in Industrial Engineering from [E
 I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in test-time-training for LLMs and self-supervised learning for images, text, video and audio.  As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
 
 ### 🔥 News
-</div>
+<hr>
 - *2025.06*: &nbsp;📄 [New Work] **[GViT](https://arxiv.org/abs/2506.23532)** is on arXiv.
 - *2025.05*: &nbsp;📄 [New Work] **[ProxyThinker](https://arxiv.org/abs/2505.24872)** is on arXiv.
 - *2025.03*: &nbsp;🎉🎉 **[cFreD](https://arxiv.org/abs/2503.21721)** is accepted at WACV 2026.
@@ -19,7 +23,7 @@ I am interested in computer vision, natural language processing, and machine lea
 - *2022.08*: &nbsp;🚀 Started PhD journey at Rice University under Prof. Vicente Ordonez.
 
 ### 📝 Preprints
-</div>
+<hr>
 <div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/gvit_teaser.png' | relative_url }}" alt="GVIT teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>GViT: Representing Images as Gaussians for Visual Recognition</b>. [[arxiv]](https://arxiv.org/abs/2506.23532) <br />
@@ -45,7 +49,7 @@ June 2024 <br />
 </div>
 
 ### 📝 Publications 
-</div>
+<hr>
 <div class='paper-box'><div class='paper-box-image'><div><img src="{{ '/pictures/cfred_teaser.png' | relative_url }}" alt="cFreD teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>Evaluating Text-to-Image Synthesis with a Conditional Fréchet Distance</b> [[arxiv]](https://arxiv.org/abs/2503.21721) [[Code]](https://github.com/JaywonKoo17/FIDMetric)<br />
