@@ -2,15 +2,23 @@
 title: "About Me"
 ---
 
-Hola! I am Jefferson Hernandez, a PhD student in Computer Science at [Rice University](https://cs.rice.edu/), working in self-supervised learning for multimodal data and reasoning in Large language models under the supervision of [Prof. Vicente Ordonez](http://vicenteordonez.com) at [Vislang Lab](https://www.vislang.ai). 
+Hola! I am **Jefferson Hernandez**, a PhD student in Computer Science at [Rice University](https://cs.rice.edu/), working in self-supervised learning for multimodal data and reasoning in Large language models under the supervision of [Prof. Vicente Ordonez](http://vicenteordonez.com) at [Vislang Lab](https://www.vislang.ai). 
 I am currently a Research Intern at [Meta Reality Labs](https://tech.facebook.com/reality-labs/) working with [Ishwarya Ananthabhotla](https://www.ishwarya.me/). I previously interned at [Adobe Research](https://research.adobe.com/) working with [Kushal Kafle](https://kushalkafle.com/). I have also colaborated with [Ruben Villegas](https://rubenvillegas.me/) on self-supervised learning for video data.
 Prior to this, I obtained my bachelor's degree in Industrial Engineering from [ESPOL](http://www.espol.edu.ec/) (top 1% of the class), where I worked with [Prof. Andres G. Abad](https://www.researchgate.net/profile/Andres-Abad-2) on machine learning and computer vision. I also worked as a research assistant at [INARI Lab](https://inarilab.com/) on applications of computer vision to retail. I have also shortly worked as a Computer Vision engineer at [adaviv](https://www.adaviv.com/).
 
 I am interested in computer vision, natural language processing, and machine learning. I am particularly interested in test-time-training for LLMs and self-supervised learning for images, text, video and audio.  As a PhD student, I am always eager to collaborate with other researchers. If you are interested in working with me, feel free to reach out to me via email.
 
 ### 🔥 News
+<hr />
+
+- *2025.03*: &nbsp;🎉🎉 **[cFreD](https://arxiv.org/abs/2503.21721)** is accepted at WACV 2026.
+- *2024.06*: &nbsp;📄 [New Work] **[GenLLaVA](https://arxiv.org/abs/2406.11262)** is on arXiv.
+- *2023.11*: &nbsp;🎉🎉 **[ViC-MAE](https://jeffhernandez1995.github.io/vicmae/)** accepted at ECCV 2024.
+- *2022.08*: &nbsp;🚀 Started PhD journey at Rice University under Prof. Vicente Ordonez.
+
 
 ### 📝 Preprints
+<hr />
 
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/genllava_teaser.png' alt="GenLLaVA teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
@@ -20,9 +28,20 @@ June 2024 <br />
 </div>
 </div>
 
-### 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
+
+### 📝 Publications 
+<hr />
+
+<div class='paper-box'><div class='paper-box-image'><div><img src='pictures/cfred_teaser.png' alt="cFreD teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>Evaluating Text-to-Image Synthesis with a Conditional Fréchet Distance</b> [[arxiv]](https://arxiv.org/abs/2503.21721) [[Code]](https://github.com/JaywonKoo17/FIDMetric)<br />
+Jaywon Koo*, <b>Jefferson Hernandez*</b>, Moayed Haji-Ali, Ziyan Yang, Vicente Ordonez <br />
+*Equal contribution. March 2025, WACV 2026 <br />
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><img src='pictures/vic_mae_teaser.png' alt="ViC-MAE teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ViC-MAE: Self-Supervised Representation Learning from Images and Video </b>
  <br />
@@ -35,7 +54,7 @@ November 2023, ECCV 2024 <br />
 <div class='paper-box'><div class='paper-box-image'><div><img src='https://raw.githubusercontent.com/jeffhernandez1995/jeffhernandez1995.github.io/refs/heads/master/pictures/retail_sync.png' alt="Retail Dataset" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>Automatic Retail Dataset Creation with Multiple Sources of Information Synchronization</b>. [[Paper]](https://ieeexplore.ieee.org/abstract/document/10320058) <br />
-<b>Jefferson Hernandez</b>, Ruben Palacios, Byron Piguave, and Andres Abad <br />
+Ricardo Palacios, Byron Piguave, <b>Jefferson Hernandez</b>,and Andres Abad <br />
 October 2023, IPTA 2023 <br />
 </div>
 </div>
