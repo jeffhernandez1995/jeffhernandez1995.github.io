@@ -31,7 +31,7 @@ June 2025 <br />
 <div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/proxythinker_teaser.png' | relative_url }}" alt="ProxyThinker teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>ProxyThinker: Test-Time Guidance through Small Visual Reasoners</b>. [[arxiv]](https://arxiv.org/abs/2505.24872) <br />
-<b>Zilin Xiao, Jaywon Koo, Siru Ouyang, <b>Jefferson Hernandez</b>, Yu Meng, Vicente Ordonez <br />
+Zilin Xiao, Jaywon Koo, Siru Ouyang, <b>Jefferson Hernandez</b>, Yu Meng, Vicente Ordonez <br />
 May 2025 <br />
 </div>
 </div>
