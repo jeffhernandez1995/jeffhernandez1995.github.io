@@ -72,12 +72,10 @@ The core insight is that late in training, the **residuals become highly correla
 <details>
   <summary><strong>Click to see proof</strong></summary>
 
-**Proof.** Write \(A := \Delta H\) and \(B := H\).
-Then \(\Delta G_H = AB^\top + BA^\top\). Since \(\operatorname{rank}(AB^\top) \le \min\{\operatorname{rank}(A),\operatorname{rank}(B)\} \le r\) and likewise \(\operatorname{rank}(BA^\top)\le r\), we have
+Write \(A := \Delta H\) and \(B := H\). Then \(\Delta G_H = AB^\top + BA^\top\). Since \(\operatorname{rank}(AB^\top) \le \min\{\operatorname{rank}(A),\operatorname{rank}(B)\} \le r\) and likewise \(\operatorname{rank}(BA^\top)\le r\), we have
 \[
 \operatorname{rank}(\Delta G_H) \le \operatorname{rank}(AB^\top)+\operatorname{rank}(BA^\top)\le 2r.
-\]
-\(\square\)
+\] \(\square\)
 
 </details>
 
@@ -95,6 +93,25 @@ Let's look at this from a spectral perspective. Consider a rank-1 global drift $
 
 **Lemma 2:** (Energy transfer to low-frequency modes)
 *For a drift $$\Delta H=\mathbf{1}a^\top$$, the Gram update is $$\Delta G_H = \mathbf{1} b^\top + b \mathbf{1}^\top$$, where $$b:=Ha$$. This update increases the Rayleigh quotient along the constant vector $$\mathbf{1}$$, meaning energy is transferred to the lowest-frequency component of the Gram matrix. This inflates the average pairwise similarity between patches.*
+
+<details>
+  <summary><strong>Click to see proof</strong></summary>
+
+With \(G_H=HH^\top\) and \(\Delta H=\mathbf{1}a^\top\),
+\[
+\Delta G_H=(\mathbf{1}a^\top)H^\top + H(\mathbf{1}a^\top)^\top
+= \mathbf{1}(Ha)^\top + (Ha)\mathbf{1}^\top
+= \mathbf{1}b^\top + b\mathbf{1}^\top.
+\]
+For any unit vector \(u\), the Rayleigh quotient shift is
+\[
+u^\top \Delta G_H\, u
+= (u^\top \mathbf{1})(b^\top u) + (u^\top b)(\mathbf{1}^\top u)
+= 2(u^\top \mathbf{1})(u^\top b).
+\]
+Taking \(u=\tfrac{\mathbf{1}}{\|\mathbf{1}\|}\) shows a positive increase proportional to \(\mathbf{1}^\top b\), i.e., energy accumulates in the constant (lowest-frequency) mode. \(\square\)
+
+</details>
 
 This confirms our previous intuition: the training dynamics concentrate energy in a few "smooth" spatial modes, wiping out the high-frequency components that encode boundaries and local details.
 
