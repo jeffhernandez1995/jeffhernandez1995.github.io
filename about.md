@@ -1,7 +1,8 @@
 ---
 title: "About Me"
-permalink: /about/
+permalink: /
 redirect_from: 
+  - /about/
   - /about.html
 ---
 

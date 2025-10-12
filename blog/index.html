@@ -1,3 +1,26 @@
 ---
-redirect_to: /
+title: "Blog Posts"
+layout: blank
 ---
+<main>
+  {% assign paginated_posts = paginator.posts | default: site.posts %}
+  {% for post in paginated_posts %}
+  <article>
+    <header>
+      <h1><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h1>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    </header>
+{{ post.excerpt }}
+    {% unless post.excerpt == post.content %}
+    <footer><a class="ghost" href="{{ post.url | relative_url }}">{{ site.more }}</a></footer>
+    {% endunless %}
+  </article>
+{% endfor %}
+</main>
+{% if paginator and paginator.total_pages > 1 %}
+<footer>
+    <a {% if paginator.previous_page %} class="gray" href="{{ paginator.previous_page_path | relative_url }}" {% else %} class="disabled" {% endif %}>« newer posts</a>
+    <span class="paginate">page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    <a {% if paginator.next_page %} class="gray" href="{{ paginator.next_page_path | relative_url }}" {% else %} class="disabled" {% endif %}>older posts »</a>
+</footer>
+{% endif %}
