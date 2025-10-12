@@ -52,3 +52,27 @@ img
 
 figure
   margin: 1em 0
+
+details
+  border: 1px solid #e5e7eb
+  border-radius: 0.5rem
+  padding: 0.75rem 1rem
+  margin: 0.75rem 0
+  background: #fafafa
+
+details > summary
+  cursor: pointer
+  list-style: none
+  font-weight: 600
+
+details > summary::-webkit-details-marker
+  display: none
+
+details > summary::before
+  content: "\25B8"
+  display: inline-block
+  margin-right: 0.5rem
+  transition: transform 0.15s ease
+
+details[open] > summary::before
+  transform: rotate(90deg)
