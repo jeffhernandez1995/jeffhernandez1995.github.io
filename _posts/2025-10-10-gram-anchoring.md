@@ -69,6 +69,18 @@ The core insight is that late in training, the **residuals become highly correla
 **Lemma 1:** (Rank bound for Gram updates)
 *If $$\Delta H$$ has rank $$r$$, then $$\Delta G_H$$ in equation $$\eqref{eq:deltaG-raw}$$ has rank at most $$2r$$.*
 
+<details>
+  <summary><strong>Click to see proof</strong></summary>
+
+**Proof.** Write \(A := \Delta H\) and \(B := H\).
+Then \(\Delta G_H = AB^\top + BA^\top\). Since \(\operatorname{rank}(AB^\top) \le \min\{\operatorname{rank}(A),\operatorname{rank}(B)\} \le r\) and likewise \(\operatorname{rank}(BA^\top)\le r\), we have
+\[
+\operatorname{rank}(\Delta G_H) \le \operatorname{rank}(AB^\top)+\operatorname{rank}(BA^\top)\le 2r.
+\]
+\(\square\)
+
+</details>
+
 **Assumption 1:** (Correlated residuals)
 *The patch residual matrix $$R$$ has a low rank $$r\ll P$$ (often $$r\approx 1$$), and the Jacobians are shared ($$J_i\approx J$$).*
 
