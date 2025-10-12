@@ -18,7 +18,7 @@ style:
 
 navigation:
   - about.md
-  - blog/index.html
+  - index.html
   - archive.html
 
 
