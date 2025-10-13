@@ -132,6 +132,17 @@ This loss has two powerful properties:
 
 $$ \frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X} = 4\, (XX^\top - X_G X_G^\top)\, X. \tag{7}\label{eq:gram-grad}$$
 
+If we write $X = X_G + E$ with $\|E\|$ small. Then, to first order,
+\[
+XX^\top - X_GX_G^\top \;=\; X_G E^\top + E X_G^\top \;+\; \mathcal{O}(\|E\|^2),
+\]
+and
+\[
+\frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X}
+\;=\; 4\,(X_G E^\top + E X_G^\top) X_G \;+\; \mathcal{O}(\|E\|^2).
+\]
+Thus the Gram gradient applies negative feedback precisely on coherent (low-rank) deformations $E$ that alter many off-diagonal entries at once, restoring the teacher’s within-image geometry.
+
 **Proposition 2:** (Complementarity with CE/iBOT)
 *The low-rank drifts induced by CE/iBOT change the Gram matrix $$XX^\top$$ along a small set of smooth spatial modes. The Gram loss penalizes exactly these changes while leaving global rotations free. Therefore, Gram anchoring can repair locality (improving dense task performance) without significantly impeding the learning of global semantics.*
 
@@ -152,8 +163,6 @@ The core problem is that correlated targets from global and patch-level self-sup
 
 **Gram anchoring** provides a targeted fix. By penalizing deviations from a "good" teacher Gram matrix, it counteracts these specific low-rank, geometry-destroying updates. Its rotational invariance ensures it doesn't interfere with the learning of high-level global semantics, making it an effective and complementary regularizer.
 
-### Minimal recipe
-Use an early-stage or high-resolution teacher to define the target Gram matrix $$X_G X_G^\top$$. Add the Frobenius norm loss $$\|XX^\top - X_GX_G^\top\|_F^2$$ for global image crops, and monitor CLS-patch alignment and the spectrum of $$G$$. If they stabilize while your dense task metrics improve, you're on the right track.
 
 ## _References_
 
