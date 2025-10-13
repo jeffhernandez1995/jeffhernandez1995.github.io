@@ -132,16 +132,15 @@ This loss has two powerful properties:
 
 $$ \frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X} = 4\, (XX^\top - X_G X_G^\top)\, X. \tag{7}\label{eq:gram-grad}$$
 
-If we write $X = X_G + E$ with $\|E\|$ small. Then, to first order,
-\[
-XX^\top - X_GX_G^\top \;=\; X_G E^\top + E X_G^\top \;+\; \mathcal{O}(\|E\|^2),
-\]
+If we write $$X = X_G + E$$ with $$\|E\|$$ small. Then, to first order,
+
+$$XX^\top - X_GX_G^\top \;=\; X_G E^\top + E X_G^\top \;+\; \mathcal{O}(\|E\|^2),$$
 and
-\[
-\frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X}
-\;=\; 4\,(X_G E^\top + E X_G^\top) X_G \;+\; \mathcal{O}(\|E\|^2).
-\]
+$$\frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X}
+\;=\; 4\,(X_G E^\top + E X_G^\top) X_G \;+\; \mathcal{O}(\|E\|^2).$$
+
 Thus the Gram gradient applies negative feedback precisely on coherent (low-rank) deformations $E$ that alter many off-diagonal entries at once, restoring the teacher’s within-image geometry.
+
 
 **Proposition 2:** (Complementarity with CE/iBOT)
 *The low-rank drifts induced by CE/iBOT change the Gram matrix $$XX^\top$$ along a small set of smooth spatial modes. The Gram loss penalizes exactly these changes while leaving global rotations free. Therefore, Gram anchoring can repair locality (improving dense task performance) without significantly impeding the learning of global semantics.*
