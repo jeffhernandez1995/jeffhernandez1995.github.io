@@ -135,7 +135,9 @@ $$ \frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X} = 4\, (XX^\top - X_G 
 If we write $$X = X_G + E$$ with $$\|E\|$$ small. Then, to first order,
 
 $$XX^\top - X_GX_G^\top \;=\; X_G E^\top + E X_G^\top \;+\; \mathcal{O}(\|E\|^2),$$
+
 and
+
 $$\frac{\partial \mathcal{L}_{\mathrm{Gram}}}{\partial X}
 \;=\; 4\,(X_G E^\top + E X_G^\top) X_G \;+\; \mathcal{O}(\|E\|^2).$$
 
