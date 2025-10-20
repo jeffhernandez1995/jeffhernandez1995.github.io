@@ -10,7 +10,7 @@ Self-supervised learning has been a game-changer for training large-scale Vision
 
 | ![Feature degradation]({{ '/pictures/feature_degradation.png' | relative_url }}) | 
 |:--:| 
-| **Figure 1**: Evolution of the cosine similarity between the patch noted in red and all other patches. As training progresses, the features produced by the model become less localized and the similarity maps become noisier.. Extracted from [\[1\]](#simeoni2025dinov3).|
+| **Figure 1**: Evolution of the cosine similarity between the patch noted in red and all other patches. As training progresses, the features produced by the model become less localized and the similarity maps become noisier. Extracted from [\[1\]](#simeoni2025dinov3).|
 
 This post dives into the mechanics of this degradation, drawing from a simple, first-order analysis. We'll explore why this happens and then discuss a solution called **Gram anchoring**, which counteracts the issue. This analysis is based on the insights from the DINOv3 paper [\[1\]](#simeoni2025dinov3). In order to understand this post, a basic familiarity with Vision Transformers, self-supervised learning, and matrix calculus is helpful.
 
@@ -167,7 +167,7 @@ The core problem is that correlated targets from global and patch-level self-sup
 
 ## _References_
 
-<a name="simeoni2025dinov3"></a> [\[1\]](#simeoni2025dinov3) Siméoni, O., Vo, H. V., Seitzer, M., Baldassarre, F., Oquab, M., Jose, C., ... & Bojanowski, P. (2025). Dinov3. arXiv preprint arXiv:2508.10104..
+<a name="simeoni2025dinov3"></a> [\[1\]](#simeoni2025dinov3) Siméoni, O., Vo, H. V., Seitzer, M., Baldassarre, F., Oquab, M., Jose, C., ... & Bojanowski, P. (2025). Dinov3. arXiv preprint arXiv:2508.10104.
 
 
 ## Appendix: Deriving $$\partial\mathcal{L}_{\mathrm{Gram}}/\partial X$$
