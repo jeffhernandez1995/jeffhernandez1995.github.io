@@ -23,6 +23,7 @@ I am interested in computer vision, natural language processing, and machine lea
 
 ### 🔥 News
 <hr>
+- *2025.10*: &nbsp;📄 [New Work] **[Decoding the dark proteome](https://arxiv.org/abs/2510.07337)** is on arXiv.
 - *2025.06*: &nbsp;📄 [New Work] **[GViT](https://arxiv.org/abs/2506.23532)** is on arXiv.
 - *2025.05*: &nbsp;📄 [New Work] **[ProxyThinker](https://arxiv.org/abs/2505.24872)** is on arXiv.
 - *2025.03*: &nbsp;🎉🎉 **[cFreD](https://arxiv.org/abs/2503.21721)** is accepted at WACV 2026.
@@ -33,6 +34,14 @@ I am interested in computer vision, natural language processing, and machine lea
 
 ### 📝 Preprints
 <hr>
+<div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/decoding_protome.png' | relative_url }}" alt="Decoding the Dark Proteome teaser" width=150px></div></div>
+<div class='paper-box-text' markdown="1">
+<b>Decoding the Dark Proteome: Deep Learning-Enabled Discovery of Druggable Enzymes in Wuchereria bancrofti</b>. [[arxiv]](https://arxiv.org/abs/2510.07337) <br />
+S. Shivakumar, <b>Jefferson Hernandez</b> <br />
+October 2025 <br />
+</div>
+</div>
+
 <div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/gvit_teaser.png' | relative_url }}" alt="GVIT teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
 <b>GViT: Representing Images as Gaussians for Visual Recognition</b>. [[arxiv]](https://arxiv.org/abs/2506.23532) <br />
