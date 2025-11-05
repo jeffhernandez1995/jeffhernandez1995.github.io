@@ -36,7 +36,10 @@ I am interested in computer vision, natural language processing, and machine lea
 <hr>
 <div class='paper-box'><div class="paper-box-image"><div><img src="{{ '/pictures/decoding_protome.png' | relative_url }}" alt="Decoding the Dark Proteome teaser" width=150px></div></div>
 <div class='paper-box-text' markdown="1">
-<b>Decoding the Dark Proteome: Deep Learning-Enabled Discovery of Druggable Enzymes in Wuchereria bancrofti</b>. [[arxiv]](https://arxiv.org/abs/2510.07337) <br />
+<b>Decoding the Dark Proteome: Deep Learning-Enabled Discovery of Druggable </b>
+ <br />
+ <b>
+ Enzymes in Wuchereria bancrofti</b>. [[arxiv]](https://arxiv.org/abs/2510.07337) <br />
 S. Shivakumar, <b>Jefferson Hernandez</b> <br />
 October 2025 <br />
 </div>
