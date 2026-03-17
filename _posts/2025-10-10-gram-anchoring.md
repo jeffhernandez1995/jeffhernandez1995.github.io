@@ -1,5 +1,5 @@
 ---
-title: "Why Patch Features Go Global: A First-Order View of Feature Degradation and Why Gram Anchoring Helps"
+title: "A First-Order View of Feature Degradation andGram Anchoring in DINOv3"
 author: Jefferson Hernandez
 categories: self-supervised_learning, computer_vision, machine_learning, english
 date:   2025-10-10 18:09:00
