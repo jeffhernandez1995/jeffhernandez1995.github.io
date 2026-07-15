@@ -91,7 +91,7 @@ $$
 =u_{n+1}+u_{n-1}+2\lambda\cos\!\left(2\pi(n\alpha+\theta)\right)u_n.
 $$
 
-Simon asked whether, for every irrational frequency $$\alpha$$, every phase $$\theta$$, and every subcritical coupling $$|\lambda|<1$$, the operator has purely absolutely continuous spectrum.
+Simon asked whether, for every irrational frequency $$\alpha$$, every phase $$\theta$$, and every subcritical coupling $$\mid\lambda\mid<1$$, the operator has purely absolutely continuous spectrum.
 
 </div>
 
@@ -99,7 +99,7 @@ Imagine a quantum particle moving along a one-dimensional chain whose sites are 
 
 The cosine term creates an energy landscape along the chain. The phase $$\theta$$ shifts that landscape, the parameter $$\lambda$$ controls its strength, and choosing an irrational frequency $$\alpha$$ makes the pattern repeat approximately but never exactly. This is what makes the operator *quasiperiodic* rather than periodic.
 
-When $$|\lambda|<1$$, the landscape is in the weak-coupling regime. Simon asked whether the spectrum is then always purely absolutely continuous--roughly, whether the corresponding states remain extended through the chain rather than becoming localized--for every irrational frequency and every phase. Artur Avila proved that the answer is yes in 2008 [\[7\]](#avilaamo). This citation was very hard to find, and it would later come back to affect the benchmark's ground truth.
+When $$\mid\lambda\mid<1$$, the landscape is in the weak-coupling regime. Simon asked whether the spectrum is then always purely absolutely continuous--roughly, whether the corresponding states remain extended through the chain rather than becoming localized--for every irrational frequency and every phase. Artur Avila proved that the answer is yes in 2008 [\[7\]](#avilaamo). This citation was very hard to find, and it would later come back to affect the benchmark's ground truth.
 
 ## Building a benchmark for problem status
 
